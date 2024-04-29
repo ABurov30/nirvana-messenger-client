@@ -1,0 +1,27 @@
+{
+	"arrowParens": "avoid",
+	"useTabs": true,
+	"singleQuote": true,
+	"tabWidth": 4,
+	"semi": false,
+	"plugins": [],
+	"trailingComma": "none",
+	"importOrder": [
+		"react",
+		"redux",
+		"nirvana-uikit",
+		"<THIRD_PARTY_MODULES>",
+		"pages/",
+		"entities/",
+		"types",
+		"shared/",
+		"config",
+		"utils/",
+		"hooks/",
+		".svg",
+		"^../(.*)$",
+		"(?=./*.module.scss)"
+	],
+	"importOrderSeparation": true,
+	"importOrderParserPlugins": ["jsx", "typescript"]
+}

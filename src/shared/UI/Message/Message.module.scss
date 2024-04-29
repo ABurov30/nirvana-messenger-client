@@ -1,0 +1,35 @@
+@import '../../constants/colors.scss';
+
+.container {
+	display: flex;
+	align-items: center;
+	width: 70%;
+	gap: 15px;
+	padding: 10px;
+	margin-left: 20px;
+	height: 5%;
+}
+
+.message {
+	width: fit-content;
+	text-align: center;
+	padding: 10px;
+	height: fit-content;
+	border: solid transparent 1px;
+	border-radius: 4px;
+	color: $primary-white;
+}
+
+.currentUserMessage {
+	background-color: $primary-blue;
+}
+
+.anotherUserMessage {
+	background-color: $primary-grey;
+}
+
+.currentUserContainer {
+	align-self: flex-end;
+	flex-direction: row-reverse;
+}
+
