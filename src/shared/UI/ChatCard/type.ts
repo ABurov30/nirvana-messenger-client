@@ -1,4 +1,5 @@
-import { ChatSectionProps } from '../../Sections/ChatSection/type'
+import { ChatSectionProps } from "../ChatSection/type"
+
 
 export interface ChatCardProps
 	extends Partial<Pick<ChatSectionProps, 'isCurrent' | 'isNewMessage'>> {

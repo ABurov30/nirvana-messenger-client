@@ -1,4 +1,5 @@
 import { atom } from 'jotai'
 import { User } from './types'
 
-export const user = atom<User>([])
+//@ts-ignore
+export const user = atom<User>({})

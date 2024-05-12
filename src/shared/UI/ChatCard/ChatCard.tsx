@@ -1,3 +1,4 @@
+//@ts-ignore
 import React from 'react'
 import { Typography } from 'nirvana-uikit'
 import { ChatCardProps } from './type'

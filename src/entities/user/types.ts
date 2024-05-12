@@ -29,4 +29,4 @@ export enum UserStatus {
 	active = 'active'
 }
 
-export type User = ActiveType | GuestType | FetchingUserType | NonActiveType
+export type User = ActiveUser | Guest | FetchingUser | NonActiveUser

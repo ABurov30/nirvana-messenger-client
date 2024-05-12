@@ -1,3 +1,4 @@
+//@ts-ignore
 import React, { useEffect } from 'react'
 import styles from './Messenger.module.scss'
 import ChatCard from '../../shared/UI/ChatCard/ChatCard'

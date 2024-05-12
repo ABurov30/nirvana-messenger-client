@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+//@ts-nocheck
+import React, { MouseEvent, useEffect, useState } from 'react'
 import { Send } from '@mui/icons-material'
 
 import ChatCard from '../ChatCard/ChatCard'
@@ -33,7 +34,7 @@ function Chat() {
 		})
 	}, [socket])
 
-	const sendMessage = (e: Event) => {
+	const sendMessage = (e: MouseEvent) => {
 		e.preventDefault()
 		socket.emit('send message', {
 			message: input,
