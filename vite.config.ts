@@ -1,12 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import jotaiDebugLabel from 'jotai/babel/plugin-debug-label'
-import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh'
 import federation from '@originjs/vite-plugin-federation'
+import viteTsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
 	plugins: [
-		react({ babel: { plugins: [jotaiDebugLabel, jotaiReactRefresh] } }),
+		react(),
+		viteTsconfigPaths(),
 		federation({
 			name: 'messengerApp',
 			filename: 'remoteEntry.js',

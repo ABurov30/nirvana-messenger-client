@@ -15,14 +15,15 @@
 		"@mui/material": "^5.15.15",
 		"antd": "^5.16.1",
 		"graphql": "^16.8.1",
-		"jotai": "^2.8.0",
-		"jotai-devtools": "^0.8.0",
+		"mobx": "^6.12.3",
+		"mobx-react-lite": "^4.0.7",
 		"nirvana-uikit": "^1.0.30",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-router-dom": "^6.22.3",
 		"sass": "^1.74.1",
-		"socket.io-client": "^4.7.5"
+		"socket.io-client": "^4.7.5",
+		"vite-tsconfig-paths": "^4.3.2"
 	},
 	"devDependencies": {
 		"@originjs/vite-plugin-federation": "^1.3.5",

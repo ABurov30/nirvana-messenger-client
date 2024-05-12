@@ -9,28 +9,22 @@ import styles from './Chat.module.scss'
 
 import { io } from 'socket.io-client'
 import { messages } from '../../../entities/message/atom'
-import { useAtom } from 'jotai'
-import { user } from '../../../entities/user/atom'
+import { user } from '../../../entities/user/store'
+import { ChatProps } from './type'
 
 const socket = io(import.meta.env.VITE_SOCKET_BASE_URL).connect()
 
-function Chat() {
+function Chat({ messageList, addMessageList, userValue }: ChatProps) {
 	const [input, setInput] = useState('')
-
-	const [messageList, setMessageList] = useAtom(messages)
-	const [userValue] = useAtom(user)
 
 	useEffect(() => {
 		socket.on('get message', data => {
 			console.log('launch')
-			setMessageList(prev => [
-				...prev,
-				{
-					message: data.message,
-					userId: data.userId,
-					nickname: data.nickname
-				}
-			])
+			addMessageList({
+				message: data.message,
+				userId: data.userId,
+				nickname: data.nickname
+			})
 		})
 	}, [socket])
 
@@ -41,14 +35,11 @@ function Chat() {
 			userId: userValue.id,
 			nickname: userValue.nickname
 		})
-		setMessageList(prev => [
-			...prev,
-			{
-				message: input,
-				userId: userValue.id,
-				nickname: userValue.nickname
-			}
-		])
+		addMessageList({
+			message: input,
+			userId: userValue.id,
+			nickname: userValue.nickname
+		})
 		setInput('')
 	}
 

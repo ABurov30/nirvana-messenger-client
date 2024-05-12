@@ -6,22 +6,27 @@ import ChatSection from '../../shared/UI/ChatSection/ChatSection'
 import Chat from '../../shared/UI/Chat/Chat'
 import { useQuery } from '@apollo/client'
 import { GET_ALL_CHATS } from '../../entities/chat/query'
-import { useAtom } from 'jotai'
-import { chats } from '../../entities/chat/atom'
 import { Spin } from 'antd'
+import { observer } from 'mobx-react-lite'
+import { chatStore } from '../../entities/chat/store'
+import { messageStore } from '../../entities/message/store'
+import { userStore } from '../../entities/user/store'
+import { toJS } from 'mobx'
 
-function MessengerPage() {
+const MessengerPage = observer(() => {
 	const { data, loading } = useQuery(GET_ALL_CHATS)
-	const [chatsList, setChatsList] = useAtom(chats)
+	const { entities: chatsList, set: setChatsList } = chatStore
+	const { entities: messageList, add: addMessageList } = messageStore
+	const { entity: userValue } = userStore
+
+	console.log(toJS(messageList))
 
 	useEffect(() => {
 		if (!loading) {
-			console.log(data)
-			setChatsList(data.queryChats.chats)
-			console.log(chatsList)
+			setChatsList(data?.queryChats?.chats)
 		}
 	}, [data])
-	console.log(chatsList)
+
 	return (
 		<div className={styles.container}>
 			<ChatSection>
@@ -34,13 +39,18 @@ function MessengerPage() {
 							lastMessage={chat.lastMessage}
 							isCurrent={true}
 							isNewMessage={true}
+							key={chat.name + chat.lastMessage}
 						/>
 					))
 				)}
 			</ChatSection>
-			<Chat />
+			<Chat
+				messageList={messageList}
+				addMessageList={addMessageList}
+				userValue={userValue}
+			/>
 		</div>
 	)
-}
+})
 
 export default MessengerPage

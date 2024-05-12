@@ -1,4 +1,4 @@
-export interface Chat {
+export interface Chat extends Entity {
 	name: string
 	lastMessage: string
 }

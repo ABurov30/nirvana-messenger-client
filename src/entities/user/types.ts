@@ -1,5 +1,4 @@
-export type UserFromBackend = {
-	id: string
+export interface UserFromBackend extends Entity {
 	email: string
 	nickname: string
 	confirmed: boolean
