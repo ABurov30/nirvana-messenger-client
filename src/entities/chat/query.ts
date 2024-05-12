@@ -12,6 +12,12 @@ export const GET_ALL_CHATS = gql`
 				id
 				name
 				lastMessage
+				isNewMessage
+				messages {
+					userId
+					message
+					chatId
+				}
 			}
 		}
 	}

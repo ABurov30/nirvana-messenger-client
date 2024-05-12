@@ -11,19 +11,38 @@ import { io } from 'socket.io-client'
 import { messages } from '../../../entities/message/atom'
 import { user } from '../../../entities/user/store'
 import { ChatProps } from './type'
+import { Avatar } from '@mui/material'
+import { Typography } from 'nirvana-uikit'
 
 const socket = io(import.meta.env.VITE_SOCKET_BASE_URL).connect()
 
-function Chat({ messageList, addMessageList, userValue }: ChatProps) {
+function Chat({
+	messageList,
+	activeChat,
+	addMessageList,
+	updateChatsList,
+	userValue
+}: ChatProps) {
 	const [input, setInput] = useState('')
+	console.log(activeChat)
 
 	useEffect(() => {
 		socket.on('get message', data => {
-			console.log('launch')
 			addMessageList({
 				message: data.message,
 				userId: data.userId,
-				nickname: data.nickname
+				chatId: data.chatId
+			})
+			updateChatsList({
+				...activeChat,
+				messages: [
+					...activeChat?.messages,
+					{
+						message: data.message,
+						userId: data.userId,
+						chatId: data.chatId
+					}
+				]
 			})
 		})
 	}, [socket])
@@ -32,13 +51,24 @@ function Chat({ messageList, addMessageList, userValue }: ChatProps) {
 		e.preventDefault()
 		socket.emit('send message', {
 			message: input,
-			userId: userValue.id,
-			nickname: userValue.nickname
+			userId: userValue?.id,
+			chatId: activeChat?.id
 		})
 		addMessageList({
 			message: input,
-			userId: userValue.id,
-			nickname: userValue.nickname
+			userId: userValue?.id,
+			chatId: activeChat?.id
+		})
+		updateChatsList({
+			...activeChat,
+			messages: [
+				...activeChat?.messages,
+				{
+					message: input,
+					userId: userValue?.id,
+					chatId: activeChat?.id
+				}
+			]
 		})
 		setInput('')
 	}
@@ -46,16 +76,31 @@ function Chat({ messageList, addMessageList, userValue }: ChatProps) {
 	return (
 		<div className={styles.chat}>
 			<div className={styles.header}>
-				<ChatCard nickname={userValue.nickname} />
+				<Avatar sx={{ padding: '5px' }} alt={activeChat?.name}>
+					{activeChat?.name}
+				</Avatar>
+				<div className={styles.textContainer}>
+					<div className={styles.nameContainer}>
+						{activeChat?.name ? (
+							<Typography
+								text={activeChat?.name}
+								fontSize="1.2em"
+								weight="semibold"
+							/>
+						) : null}
+					</div>
+				</div>
 			</div>
 			<div className={styles.chatHistory}>
-				{messageList.map((message, i) => (
-					<Message
-						key={message.message + i + userValue.id}
-						user={userValue}
-						message={message}
-					/>
-				))}
+				{messageList?.length
+					? messageList?.map((message, i) => (
+							<Message
+								key={message.message + i + userValue.id}
+								user={userValue}
+								message={message}
+							/>
+					  ))
+					: null}
 			</div>
 			<div className={styles.formContainer}>
 				<form className={styles.form}>

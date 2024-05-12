@@ -1,8 +1,10 @@
-import { ChatSectionProps } from "../ChatSection/type"
+import { Chat } from '../../../entities/chat/types'
+import { Message } from '../../../entities/message/types'
 
-
-export interface ChatCardProps
-	extends Partial<Pick<ChatSectionProps, 'isCurrent' | 'isNewMessage'>> {
-	nickname: string
-	lastMessage?: string
+export interface ChatCardProps {
+	chat: Chat
+	activeChat: Chat
+	setActiveChat: (chat: Chat) => void
+	setMessageList: (chat: Message[]) => void
+	updateChatsList: (chat: Chat) => void
 }

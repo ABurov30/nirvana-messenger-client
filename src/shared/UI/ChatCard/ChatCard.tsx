@@ -4,34 +4,53 @@ import { Typography } from 'nirvana-uikit'
 import { ChatCardProps } from './type'
 import styles from './ChatCard.module.scss'
 import { Avatar } from '@mui/material'
+import { onChatSelection } from './handlers/onChatSelection'
 
-function ChatCard({ nickname, lastMessage, isNewMessage }: ChatCardProps) {
+function ChatCard({
+	chat,
+	activeChat,
+	setActiveChat,
+	setMessageList,
+	updateChatsList
+}: ChatCardProps) {
 	return (
-		<div className={`${styles.chatCard}`}>
-			<Avatar sx={{ padding: '5px' }} alt={nickname}>
-				{nickname}
+		<div
+			className={`${styles.chatCard} ${
+				chat?.id === activeChat?.id && styles.currentChatCard
+			}`}
+			onClick={() =>
+				onChatSelection({
+					chat,
+					setActiveChat,
+					setMessageList,
+					updateChatsList
+				})
+			}
+		>
+			<Avatar sx={{ padding: '5px' }} alt={chat?.name}>
+				{chat?.name}
 			</Avatar>
 			<div className={styles.textContainer}>
 				<div className={styles.nameContainer}>
-					{nickname ? (
+					{chat?.name ? (
 						<Typography
-							text={`${nickname}`}
+							text={chat?.name}
 							fontSize="1.2em"
 							weight="semibold"
 						/>
 					) : null}
 				</div>
 				<div className={styles.lastMessageContainer}>
-					{lastMessage ? (
+					{chat?.lastMessage ? (
 						<Typography
-							text={lastMessage}
+							text={chat?.lastMessage}
 							fontSize="1em"
 							weight="regular"
 						/>
 					) : null}
 				</div>
 			</div>
-			{isNewMessage && <div className={styles.notification}></div>}
+			{chat?.isNewMessage && <div className={styles.notification}></div>}
 		</div>
 	)
 }

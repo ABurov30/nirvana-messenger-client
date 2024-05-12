@@ -1,5 +1,5 @@
 //@ts-ignore
-import React, { useEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import styles from './Messenger.module.scss'
 import ChatCard from '../../shared/UI/ChatCard/ChatCard'
 import ChatSection from '../../shared/UI/ChatSection/ChatSection'
@@ -11,17 +11,36 @@ import { observer } from 'mobx-react-lite'
 import { chatStore } from '../../entities/chat/store'
 import { messageStore } from '../../entities/message/store'
 import { userStore } from '../../entities/user/store'
-import { toJS } from 'mobx'
+import { UserStatus } from '../../entities/user/types'
 
 const MessengerPage = observer(() => {
 	const { data, loading } = useQuery(GET_ALL_CHATS)
-	const { entities: chatsList, set: setChatsList } = chatStore
-	const { entities: messageList, add: addMessageList } = messageStore
-	const { entity: userValue } = userStore
-
-	console.log(toJS(messageList))
+	const {
+		entities: chatsList,
+		set: setChatsList,
+		update: updateChatsList,
+		activeChat,
+		setActiveChat
+	} = chatStore
+	const {
+		entities: messageList,
+		add: addMessageList,
+		set: setMessageList
+	} = messageStore
+	const { entity: userValue, set: setUser } = userStore
 
 	useEffect(() => {
+		setUser({
+			email: 'admin@nirvana',
+			nickname: 'admin',
+			id: '35684199-e068-4e17-953a-7b2da51997f9',
+			confirmed: true,
+			isAdmin: true,
+			status: UserStatus.active
+		})
+	}, [])
+
+	useLayoutEffect(() => {
 		if (!loading) {
 			setChatsList(data?.queryChats?.chats)
 		}
@@ -33,21 +52,26 @@ const MessengerPage = observer(() => {
 				{loading ? (
 					<Spin />
 				) : (
-					chatsList.map(chat => (
-						<ChatCard
-							nickname={chat.name}
-							lastMessage={chat.lastMessage}
-							isCurrent={true}
-							isNewMessage={true}
-							key={chat.name + chat.lastMessage}
-						/>
-					))
+					chatsList.map(chat => {
+						return (
+							<ChatCard
+								chat={chat}
+								activeChat={activeChat}
+								key={chat.name + chat.lastMessage}
+								setActiveChat={setActiveChat}
+								setMessageList={setMessageList}
+								updateChatsList={updateChatsList}
+							/>
+						)
+					})
 				)}
 			</ChatSection>
 			<Chat
 				messageList={messageList}
+				activeChat={activeChat}
 				addMessageList={addMessageList}
 				userValue={userValue}
+				updateChatsList={updateChatsList}
 			/>
 		</div>
 	)
