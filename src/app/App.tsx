@@ -5,6 +5,7 @@ import { ErrorBoundary } from '../shared/HOC/ErrorBoundary/ErrorBoundary'
 import { BrowserRouter } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client'
 import { apolloClient } from '../shared/apolloClient/apolloClient'
+import './index.css'
 
 function App(): JSX.Element {
 	return (

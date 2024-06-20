@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Chat } from '../../../../entities/chat/types'
 import { Message } from '../../../../entities/message/types'
 

@@ -1,13 +1,10 @@
-import { Route, Routes } from "react-router-dom"
-import MessengerPage from "../pages/MessengerPage/MessengerPage"
-
+import { Route, Routes } from 'react-router-dom'
+import MessengerPage from '../pages/MessengerPage/MessengerPage'
 
 export default function MainRoutes() {
-	
-
 	return (
 		<Routes>
-				<Route path="/" element={<MessengerPage />} />
+			<Route path="/messenger" element={<MessengerPage />} />
 		</Routes>
 	)
 }

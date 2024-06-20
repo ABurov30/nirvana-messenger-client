@@ -1,4 +1,4 @@
-import { makeObservable, toJS } from 'mobx'
+import { makeObservable } from 'mobx'
 
 import { EntitiesStore } from '../../shared/store/EntitiesStore'
 
@@ -13,7 +13,6 @@ class ChatStore extends EntitiesStore<Chat> {
 
 	setActiveChat = (data: Chat) => {
 		this.activeChat = data
-		
 	}
 }
 

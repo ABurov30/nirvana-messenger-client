@@ -1,4 +1,4 @@
-import { makeAutoObservable, makeObservable } from 'mobx'
+import { makeObservable } from 'mobx'
 
 import { EntitiesStore } from '../../shared/store/EntitiesStore'
 import { Message } from './types'
