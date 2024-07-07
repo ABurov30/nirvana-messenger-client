@@ -1,4 +1,4 @@
-import { action, makeObservable, observable } from 'mobx'
+import { action, makeAutoObservable, makeObservable, observable } from 'mobx'
 
 export class EntitiesStore<T extends Entity> {
 	entities: T[] = []

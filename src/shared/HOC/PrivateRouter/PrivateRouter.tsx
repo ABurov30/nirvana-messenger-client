@@ -4,7 +4,7 @@ import { IProps } from './type'
 
 export default function PrivateRouter({
 	children,
-	redirectPath = '/login',
+	redirectPath = '/auth/login',
 	isAllowed
 }: IProps): JSX.Element {
 	if (!isAllowed) return <Navigate to={redirectPath} replace />

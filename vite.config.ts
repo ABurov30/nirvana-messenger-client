@@ -11,28 +11,13 @@ export default defineConfig({
 			name: 'messengerApp',
 			filename: 'remoteEntry.js',
 			exposes: {
-				'./MessengerApp': './src/app/App.tsx'
-			},
-			shared: [
-				'react',
-				'react-dom',
-				'graphql',
-				'socket.io-client',
-				'mobx',
-				'@apollo/client',	
-				'mobx-react-lite',
-				'react-router-dom'
-			]
+				'./main': './src/entry.js'
+			}
 		})
 	],
 	server: {
 		port: 5174,
+		open: true,
 		strictPort: true
-	},
-	build: {
-		modulePreload: false,
-		target: 'esnext',
-		minify: false,
-		cssCodeSplit: false
 	}
 })
