@@ -1,0 +1,54 @@
+@import '../../../../../../shared/constants/colors.scss';
+
+.input {
+	width: 100%;
+	height: 100%;
+	background-color: $primary-white;
+	border: 2px solid $primary-blue;
+	padding-left: 10px;
+}
+
+.inputContainer {
+	position: relative;
+	border-radius: 4px;
+	background-color: transparent;
+	width: 100%;
+	height: 5%;
+}
+
+.inputContainer svg {
+	position: absolute;
+	right: 2%;
+	top: 30%;
+}
+
+.inputContainer:focus,
+.inputContainer:hover {
+	box-shadow: 0 0 5px $primary-blue, 0 0 25px $primary-blue,
+		0 0 50px $primary-blue;
+}
+
+.expandableSection {
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.firstRowInExpandableSection {
+	width: 100%;
+	height: 5%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+    padding: 10px;
+}
+
+
+.firstRowInExpandableSection span {
+    margin-left: 10px;
+}
+.firstRowInExpandableSection button {
+    margin-right: 10px;
+}

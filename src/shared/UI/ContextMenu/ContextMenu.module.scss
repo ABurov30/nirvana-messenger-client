@@ -1,0 +1,47 @@
+@import '../../constants/colors.scss';
+
+.modal {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+
+	overflow: hidden;
+	flex-direction: column;
+	border-radius: 4px;
+	z-index: 4;
+}
+
+.right {
+	right: 100%;
+	margin-right: 5px;
+}
+
+.left {
+	left: 100%;
+	margin-left: 5px;
+}
+
+.top {
+	top: 100%;
+	margin-top: 5px;
+}
+
+.bottom {
+	bottom: 100%;
+	margin-bottom: 5px;
+}
+
+.buttonModal {
+	width: 100%;
+	padding: 5px;
+	border: 0;
+	background-color: $primary-grey;
+	color: $primary-white;
+}
+
+.buttonModal:hover {
+	background-color: $primary-blue;
+	box-shadow: 0 0 5px $primary-blue, 0 0 25px $primary-blue,
+		0 0 50px $primary-blue;
+}

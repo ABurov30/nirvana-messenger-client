@@ -1,0 +1,111 @@
+@import '../../../../shared/constants/colors.scss';
+
+.chat {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	background-color: $primary-white;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.header {
+	width: 100%;
+	height: 10%;
+	display: flex;
+	padding-left: 30px;
+	gap: 10px;
+	align-items: center;
+	box-shadow: 0px 5px 5px -5px $primary-grey;
+}
+
+.chatHistory {
+	width: 100%;
+	height: 85%;
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	overflow-y: scroll;
+}
+
+.formContainer {
+	width: 100%;
+	height: 5%;
+}
+
+.form {
+	width: 100%;
+	height: 100%;
+}
+
+.inputContainer {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	border-radius: 4px;
+	border: solid 2px $minor-grey;
+	overflow: hidden;
+}
+
+.input {
+	width: 100%;
+	height: 100%;
+	border: transparent;
+	outline: none;
+	padding: 10px;
+	opacity: 0.7;
+	transition: all 0.2s ease-in-out;
+}
+
+.currentMessageContainer {
+	display: flex;
+	justify-content: space-between;
+	z-index: 3;
+	width: 100%;
+	background-color: $minor-grey;
+	opacity: 0.6;
+	padding: 5px 0;
+	gap: 10px;
+}
+
+.currentMessage {
+	width: 80%;
+}
+
+.iconContainer {
+	width: 5%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-right: $minor-blue 2px solid;
+}
+
+.cancelButton {
+	background-color: transparent;
+	border: 0;
+	width: 5%;
+}
+
+.inputContainer:hover {
+	border: 0;
+	box-shadow: 0 0 5px $primary-violet, 0 0 25px $primary-violet,
+		0 0 50px $primary-violet;
+}
+
+.inputContainer:focus {
+	border: 0;
+	box-shadow: 0 0 5px $primary-violet, 0 0 25px $primary-violet,
+		0 0 50px $primary-violet;
+}
+
+.button {
+	width: 5%;
+	height: 100%;
+	border: 1px solid $primary-blue;
+	background: $primary-blue;
+	color: white;
+}

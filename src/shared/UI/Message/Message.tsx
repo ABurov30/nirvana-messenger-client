@@ -1,36 +1,68 @@
-//@ts-ignore
-import React from 'react'
+import { Avatar } from '@mui/material'
+import isEmpty from 'lodash.isempty'
+import { toJS } from 'mobx'
+import { observer } from 'mobx-react-lite'
+import { useState } from 'react'
+import { userStore } from '../../../entities/user/store'
 
-import { MessageProps } from './type'
+import { ContextMenu } from '../ContextMenu/ContextMenu'
+import { ContextMenuPosition } from '../ContextMenu/types'
+import { ButtonsContextMenuConfig } from './config/ButtonsContextMenuConfig'
 import styles from './Message.module.scss'
+import { MessageProps } from './type'
 
-function Message({ message, user }: MessageProps) {
+const Message = observer(({ message }: MessageProps) => {
+	const { entity: user } = userStore
+
+	if (isEmpty(toJS(user))) return
+
+	const [isModalOpen, setIsModalOpen] = useState(false)
+
 	return (
-		<div
-			className={
-				styles.container +
-				' ' +
-				`${message.userId === user.id && styles.currentUserContainer}`
-			}
-		>
-			{/* <Avatar alt={user.nickname} sx={{ padding: '5px' }}>
-				{user.nickname[0]}
-			</Avatar> */}
-			<span
+		<>
+			<div
 				className={
-					styles.message +
+					styles.container +
 					' ' +
 					`${
-						message.userId === user.id
-							? styles.currentUserMessage
-							: styles.anotherUserMessage
+						message.userId === user.id &&
+						styles.currentUserContainer
 					}`
 				}
+				onContextMenu={e => {
+					e.preventDefault()
+					setIsModalOpen(prev => !prev)
+				}}
 			>
-				{message.message}
-			</span>
-		</div>
+				<Avatar alt={message?.user?.nickname} sx={{ padding: '5px' }}>
+					{message?.user?.nickname[0]}
+				</Avatar>
+				<span
+					className={
+						styles.message +
+						' ' +
+						`${
+							message.userId === user.id
+								? styles.currentUserMessage
+								: styles.anotherUserMessage
+						}`
+					}
+				>
+					<ContextMenu
+						isModalOpen={isModalOpen}
+						setIsModalOpen={setIsModalOpen}
+						buttons={ButtonsContextMenuConfig(message)}
+						position={
+							message.userId === user.id
+								? ContextMenuPosition.right
+								: ContextMenuPosition.left
+						}
+					/>
+					{message.message}
+				</span>
+			</div>
+		</>
 	)
-}
+})
 
 export default Message

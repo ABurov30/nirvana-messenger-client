@@ -14,6 +14,10 @@ export class EntityStore<T extends Entity> {
 		this.entity = data
 	}
 
+	get = (): T => {
+		return this.entity
+	}
+
 	delete = () => {
 		this.entity = {} as T
 	}

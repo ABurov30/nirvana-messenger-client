@@ -1,0 +1,14 @@
+@import '../../constants/colors.scss';
+
+.CardSection {
+	background-color: $primary-white;
+	box-shadow: 0 0 5px $primary-grey;
+	height: 95%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 15px;
+	width: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}

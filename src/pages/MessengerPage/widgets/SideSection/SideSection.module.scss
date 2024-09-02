@@ -1,0 +1,28 @@
+@import '../../../../shared/constants/colors.scss';
+
+.sideSection {
+	width: 25%;
+	height: 100%;
+	box-shadow: 0 0 5px $primary-grey;
+}
+
+.menuSection {
+	width: 100%;
+	height: 5%;
+}
+
+.menuButton {
+	width: 33.3%;
+	height: 100%;
+	border: none;
+	background-color: $primary-white;
+}
+
+.menuButton svg {
+	color: $primary-blue;
+}
+
+.currentMenuButton {
+	background-color: $minor-violet;
+	border-top: solid $primary-blue 5px;
+}
