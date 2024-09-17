@@ -1,7 +1,7 @@
 import { Avatar } from '@mui/material'
 import { Typography } from 'nirvana-uikit'
+import { MouseEvent, useState } from 'react'
 import { ContextMenu } from '../ContextMenu/ContextMenu'
-import { ContextMenuPosition } from '../ContextMenu/types'
 import { Modal } from '../Modal/Modal'
 import styles from './Card.module.scss'
 import { CardProps } from './types'
@@ -12,16 +12,17 @@ export const Card = ({
 	onSelection,
 	entity,
 	activeEntity,
-	isContextMenuOpen,
-	setIsContextMenuOpen,
-	onContextMenu,
 	ButtonsContextMenuConfig,
 	MenuPosition,
 	isModalOpen,
 	setIsModalOpen,
 	onModalConfirm
 }: CardProps) => {
-	console.log(isContextMenuOpen, 'isContextMenuOpen')
+	const [isContextMenuOpen, setIsContextMenuOpen] = useState(false)
+	const onContextMenu = (e: MouseEvent<any>) => {
+		e.preventDefault()
+		setIsContextMenuOpen(prev => !prev)
+	}
 	return (
 		<div
 			className={`${styles.card} ${
@@ -50,7 +51,7 @@ export const Card = ({
 						/>
 					) : null}
 				</div>
-				{isContextMenuOpen ? (
+				{isContextMenuOpen && ButtonsContextMenuConfig ? (
 					<ContextMenu
 						isModalOpen={isContextMenuOpen}
 						setIsModalOpen={setIsContextMenuOpen}

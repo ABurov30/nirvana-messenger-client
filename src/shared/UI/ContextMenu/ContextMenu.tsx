@@ -17,6 +17,7 @@ export const ContextMenu = ({
 							<>
 								{conditionToShow && (
 									<button
+										key={text}
 										onClick={e => {
 											handler(e)
 											setIsModalOpen(false)

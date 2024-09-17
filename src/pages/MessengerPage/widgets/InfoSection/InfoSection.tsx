@@ -3,7 +3,6 @@ import { Avatar } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 import { Typography } from 'nirvana-uikit'
 import { appStore } from '../../../../entities/app/store'
-import { chatStore } from '../../../../entities/chat/store'
 import { CancelButton } from '../../../../shared/UI/Buttons/CancelButton'
 import { EditButton } from '../../../../shared/UI/Buttons/EditButton'
 
@@ -11,9 +10,8 @@ import { Card } from '../../../../shared/UI/Card/Card'
 import styles from './InfoSection.module.scss'
 
 const InfoSection = observer(() => {
-	const { getActiveChat } = chatStore
-	const { isInfoSectionOpen, setIsInfoSectionOpen } = appStore
-	const activeChat = getActiveChat()
+	const { isInfoSectionOpen, setIsInfoSectionOpen, activeChat } = appStore
+
 	return (
 		<>
 			{isInfoSectionOpen && (

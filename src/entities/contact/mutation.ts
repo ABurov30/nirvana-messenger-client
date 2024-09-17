@@ -32,3 +32,24 @@ export const DELETE_CONTACT = gql`
 		}
 	}
 `
+
+export const ADD_CONTACT = gql`
+	mutation addContact($user: UserInput, $contact: UserInput) {
+		addContact(contact: $contact, user: $user) {
+			success
+			errors {
+				code
+				message
+			}
+			contact {
+				id
+				name
+				user {
+					id
+					nickname
+					email
+				}
+			}
+		}
+	}
+`

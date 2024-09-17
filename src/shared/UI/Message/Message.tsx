@@ -2,7 +2,7 @@ import { Avatar } from '@mui/material'
 import isEmpty from 'lodash.isempty'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
-import { useState } from 'react'
+import { MouseEvent, useState } from 'react'
 import { userStore } from '../../../entities/user/store'
 
 import { ContextMenu } from '../ContextMenu/ContextMenu'
@@ -29,7 +29,7 @@ const Message = observer(({ message }: MessageProps) => {
 						styles.currentUserContainer
 					}`
 				}
-				onContextMenu={e => {
+				onContextMenu={(e: MouseEvent<any>) => {
 					e.preventDefault()
 					setIsModalOpen(prev => !prev)
 				}}

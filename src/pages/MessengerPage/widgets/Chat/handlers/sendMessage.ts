@@ -6,10 +6,10 @@ import { chatStore } from '../../../../../entities/chat/store'
 import { userStore } from '../../../../../entities/user/store'
 
 export const sendMessage = () => {
-	const { update: updateChatsList, getActiveChat } = chatStore
+	const { update: updateChatsList } = chatStore
 	const { entity: user } = userStore
-	const { input, setInput, socket } = appStore
-	const activeChat = getActiveChat()
+	const { input, setInput, socket, activeChat } = appStore
+
 	if (!activeChat) return
 
 	const newMessage = {

@@ -12,7 +12,6 @@ const ChatList = observer(() => {
 			<Typography text={'Chats'} fontSize="1.2em" weight="semibold" />
 			{chatsList?.length ? (
 				chatsList.map(chat => {
-					// return <ChatCard chat={chat} key={chat.id} />
 					return (
 						<Card
 							key={chat.id}
@@ -20,7 +19,6 @@ const ChatList = observer(() => {
 							subtitle={chat.lastMessage}
 							entity={chat}
 							onSelection={() => onChatSelection(chat)}
-							onContextMenu={e => e.preventDefault()}
 						/>
 					)
 				})

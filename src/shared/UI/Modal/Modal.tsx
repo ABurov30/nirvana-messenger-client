@@ -17,43 +17,49 @@ export const Modal = ({
 	return (
 		<>
 			{isModalOpen && (
-				<div className={styles.shadow}>
+				<>
+					<div className={styles.shadow}></div>
 					<div className={styles.container}>
-						<div className={styles.header}>
-							<CancelButton
-								onClick={() => setIsModalOpen(false)}
-							/>
-							<ConfirmButton
-								onClick={e => {
-									onConfirm(value)
-									setIsModalOpen(false)
-								}}
-							/>
-						</div>
-						<div className={styles.nameContainer}>
-							<Avatar sx={{ padding: '10%' }} alt={entity?.name}>
-								{entity?.name ? entity?.name[0] : ''}
-							</Avatar>
-							<div className={styles.inputContainer}>
-								<Typography
-									fontSize="1em"
-									weight="semibold"
-									text="Name"
+						<div className={styles.form}>
+							<div className={styles.header}>
+								<CancelButton
+									onClick={() => setIsModalOpen(false)}
 								/>
-								<input
-									defaultValue={entity?.name}
-									value={value?.name}
-									onChange={e =>
-										setValue(prev => ({
-											...prev,
-											name: e.target.value
-										}))
-									}
+								<ConfirmButton
+									onClick={e => {
+										onConfirm(value)
+										setIsModalOpen(false)
+									}}
 								/>
+							</div>
+							<div className={styles.nameContainer}>
+								<Avatar
+									sx={{ padding: '10%' }}
+									alt={entity?.name}
+								>
+									{entity?.name ? entity?.name[0] : ''}
+								</Avatar>
+								<div className={styles.inputContainer}>
+									<Typography
+										fontSize="1em"
+										weight="semibold"
+										text="Name"
+									/>
+									<input
+										defaultValue={entity?.name}
+										value={value?.name}
+										onChange={e =>
+											setValue(prev => ({
+												...prev,
+												name: e.target.value
+											}))
+										}
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</>
 			)}
 		</>
 	)

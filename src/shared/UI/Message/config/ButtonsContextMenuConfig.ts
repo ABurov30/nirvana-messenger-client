@@ -6,7 +6,9 @@ import { Button } from '../../ContextMenu/types'
 import { deleteMessage } from '../handlers/deleteMessage'
 import { startUpdateMessageProcess } from '../handlers/startUpdateMessageProcess'
 
-export const ButtonsContextMenuConfig = (message: Message): Button[] | undefined => {
+export const ButtonsContextMenuConfig = (
+	message: Message
+): Button[] | undefined => {
 	const { entity: user } = userStore
 	if (isEmpty(toJS(user))) return
 	return [
@@ -19,26 +21,6 @@ export const ButtonsContextMenuConfig = (message: Message): Button[] | undefined
 			text: 'Delete',
 			handler: (e: Event) => deleteMessage(message),
 			conditionToShow: user.id === message.userId
-		},
-		{
-			text: 'Reply',
-			handler: (e: Event) => {},
-			conditionToShow: true
-		},
-		{
-			text: 'Forward',
-			handler: (e: Event) => {},
-			conditionToShow: true
-		},
-		{
-			text: 'Select',
-			handler: (e: Event) => {},
-			conditionToShow: true
-		},
-		{
-			text: 'Pin',
-			handler: (e: Event) => {},
-			conditionToShow: true
 		}
 	]
 }

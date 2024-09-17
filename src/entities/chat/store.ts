@@ -1,4 +1,4 @@
-import { action, makeObservable, toJS } from 'mobx'
+import { action, makeObservable } from 'mobx'
 
 import { EntitiesStore } from '../../shared/store/EntitiesStore'
 
@@ -10,23 +10,8 @@ class ChatStore extends EntitiesStore<Chat> {
 	constructor() {
 		super()
 		makeObservable(this, {
-			setActiveChat: action,
 			updateMessage: action,
 			deleteMessage: action
-		})
-	}
-
-	getActiveChat = () => {
-		return this.entities.find(el => el?.isCurrent)
-	}
-
-	setActiveChat = (id: string) => {
-		this.entities = this.entities.map(el => {
-			if (el.id === id) {
-				return { ...el, isCurrent: true }
-			} else {
-				return { ...el, isCurrent: false }
-			}
 		})
 	}
 

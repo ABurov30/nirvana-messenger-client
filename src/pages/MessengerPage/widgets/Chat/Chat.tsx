@@ -11,7 +11,6 @@ import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
 
 import { appStore } from '../../../../entities/app/store'
-import { chatStore } from '../../../../entities/chat/store'
 import { userStore } from '../../../../entities/user/store'
 import { callHandlerPerProcess } from './handlers/callHandlerPerProcess'
 
@@ -23,7 +22,7 @@ import { useUpdatedMessage } from './hooks/useUpdatedMessage'
 import { getIconPerProcess } from './utils/getIconPerProcess'
 
 const Chat = observer(() => {
-	const { getActiveChat } = chatStore
+	const { activeChat } = appStore
 	const {
 		input,
 		setInput,
@@ -32,7 +31,6 @@ const Chat = observer(() => {
 		setIsInfoSectionOpen,
 		isInfoSectionOpen
 	} = appStore
-	const activeChat = getActiveChat()
 
 	const { entity: user } = userStore
 

@@ -6,12 +6,16 @@ import { appStore } from '../../../../../../entities/app/store'
 import { DownArrowButton } from '../../../../../../shared/UI/Buttons/DownArrowButton'
 import { UpArrowButton } from '../../../../../../shared/UI/Buttons/UpArrowButton'
 import { Card } from '../../../../../../shared/UI/Card/Card'
+import { onChatSelection } from '../ChatList/handlers/onChatSelection'
 import styles from './SearchList.module.scss'
+
+import { ButtonsContextMenuConfig } from './config/ButtonContextMenuConfig'
 import { getSearchEntities } from './handlers/getSearchEntities'
 
 const SearchList = observer(() => {
 	const [input, setInput] = useState('')
 	const { searchEntities } = appStore
+
 	const [isExpanded, setIsExpanded] = useState({
 		chats: false,
 		messages: false,
@@ -19,6 +23,7 @@ const SearchList = observer(() => {
 	})
 
 	useEffect(() => {
+		if (!input) return
 		const id = setTimeout(() => {
 			getSearchEntities(input)
 		}, 300)
@@ -67,7 +72,13 @@ const SearchList = observer(() => {
 				) : null}
 				{isExpanded.chats &&
 					searchEntities.chats?.map(chat => {
-						return <Card title={chat.name} key={chat.id} />
+						return (
+							<Card
+								title={chat.name}
+								key={chat.id}
+								onSelection={() => onChatSelection(chat)}
+							/>
+						)
 					})}
 			</div>
 			<div className={styles.expandableSection}>
@@ -135,7 +146,17 @@ const SearchList = observer(() => {
 				) : null}
 				{isExpanded.users &&
 					searchEntities.users?.map(user => {
-						return <Card title={user.nickname} key={user.id} />
+						console.log(user, '888888')
+						return (
+							<Card
+								title={user.nickname}
+								key={user.id}
+								entity={user}
+								ButtonsContextMenuConfig={
+									ButtonsContextMenuConfig
+								}
+							/>
+						)
 					})}
 			</div>
 		</>

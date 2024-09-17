@@ -4,16 +4,30 @@
 	width: 100vw;
 	height: 100vh;
 	background-color: rgba(0, 0, 0, 0.7);
-	z-index: 999;
+	z-index: 998;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	position: absolute;
+	opacity: 0.1;
 	top: 0;
 	right: 0;
 }
 
 .container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	opacity: 1;
+	top: 0;
+	right: 0;
+	z-index: 999;
+}
+
+.form {
 	width: 30vw;
 	height: 20vh;
 	background-color: $primary-white;

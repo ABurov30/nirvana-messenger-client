@@ -22,14 +22,19 @@ class AppStore {
 			menuMode: observable,
 			isInfoSectionOpen: observable,
 			isModalOpen: observable,
+			activeChat: observable,
 			searchEntities: observable,
 			setIsModalOpen: action,
 			setIsInfoSectionOpen: action,
 			setMenuMode: action,
 			setInput: action,
 			setProcess: action,
-			setCurrentMessage: action
+			setCurrentMessage: action,
+			setActiveChat: action
 		})
+	}
+	setActiveChat = (data: Chat) => {
+		this.activeChat = data
 	}
 	setInput = (data: string) => {
 		this.input = data

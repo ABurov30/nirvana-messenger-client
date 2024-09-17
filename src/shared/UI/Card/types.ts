@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react'
 import { Button, ContextMenuPosition } from '../ContextMenu/types'
 
 export interface CardProps {
@@ -7,7 +8,7 @@ export interface CardProps {
 	entity?: Entity
 	activeEntity?: Entity
 	ButtonsContextMenuConfig?: (arg: Entity) => Button[]
-	onContextMenu: (e: Event) => void
+	onContextMenu: (e: MouseEvent<any>) => void
 	setIsContextMenuOpen?: (arg: boolean) => void
 	isContextMenuOpen?: boolean
 	MenuPosition?: ContextMenuPosition
