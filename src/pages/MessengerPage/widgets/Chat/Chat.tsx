@@ -12,14 +12,14 @@ import { observer } from 'mobx-react-lite'
 
 import { appStore } from '../../../../entities/app/store'
 import { userStore } from '../../../../entities/user/store'
-import { callActionPerProcess, callHandlerPerProcess } from './handlers/callActionPerProcess'
+import { callActionPerProcess } from './handlers/callActionPerProcess'
 
+import { cancelProcess } from '../../../../entities/app/actions'
 import Message from '../../../../shared/UI/Message/Message'
 import { useDeletedMessage } from './hooks/useDeletedMessage'
 import { useGetMessage } from './hooks/useGetMessage'
 import { useUpdatedMessage } from './hooks/useUpdatedMessage'
 import { getIconPerProcess } from './utils/getIconPerProcess'
-import { cancelProcess } from '../../../../entities/app/actions'
 
 const Chat = observer(() => {
 	const { activeChat } = appStore
@@ -34,9 +34,9 @@ const Chat = observer(() => {
 
 	const { entity: user } = userStore
 
-	useGetMessage(socket)
 	useUpdatedMessage(socket)
 	useDeletedMessage(socket)
+	useGetMessage(socket)
 
 	return (
 		<div className={styles.chat}>
@@ -98,6 +98,7 @@ const Chat = observer(() => {
 								/>
 								<button
 									type="submit"
+									disabled={!toJS(input.length)}
 									className={styles.button}
 									onClick={e => callActionPerProcess(e)}
 								>

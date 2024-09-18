@@ -6,6 +6,7 @@ export interface ContextMenuProps {
 }
 
 export interface Button {
+	id: string
 	text: string
 	handler: (e: Event) => void
 	conditionToShow: boolean

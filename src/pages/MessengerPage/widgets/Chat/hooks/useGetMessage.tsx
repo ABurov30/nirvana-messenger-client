@@ -1,28 +1,21 @@
-import isEmpty from 'lodash.isempty'
-import { toJS } from 'mobx'
 import { useEffect } from 'react'
 import { Socket } from 'socket.io-client'
+import { appStore } from '../../../../../entities/app/store'
 import { chatStore } from '../../../../../entities/chat/store'
 import { Message } from '../../../../../entities/message/types'
 
 export const useGetMessage = (socket: Socket) => {
-	const { update: updateChatsList, entities: chatList } = chatStore
-
-	useEffect(() => {
+	const { getMessage, entities: chatList } = chatStore
+	const { activeChat, setActiveChat } = appStore
+	return useEffect(() => {
 		socket.on('get message', async (data: Message) => {
 			try {
-				if (isEmpty(data)) return
+				console.log('run socket')
+				getMessage(data)
 
-				const chatToUpdate = toJS(chatList).find(
-					el => el.id === data.chatId
-				)
-
-				const updatedChat = {
-					...chatToUpdate,
-					messages: [...toJS(chatToUpdate?.messages), data]
-				}
-
-				updateChatsList(updatedChat)
+				// if (updatedChat.id === activeChat?.id) {
+				// 	setActiveChat(updatedChat)
+				// }d
 			} catch (e) {
 				console.error(e)
 			}

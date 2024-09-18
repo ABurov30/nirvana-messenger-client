@@ -6,7 +6,6 @@ import { contactStore } from './store'
 import { Contact } from './types'
 
 export const deleteContact = async (contactId: string) => {
-	console.log('🚀 ~ deleteContact ~ contactId:', contactId)
 	const { delete: deleteContact } = contactStore
 	await apolloClient.mutate({
 		mutation: DELETE_CONTACT,
@@ -26,13 +25,11 @@ export const editContact = async (contact: Contact) => {
 		mutation: EDIT_CONTACT,
 		variables: { contact: contact }
 	})
-	console.log('🚀 ~ editContact ~ data:', data)
 
 	editContact(data.editContact.contact)
 }
 
 export const addContact = async (contact: User) => {
-	console.log(contact)
 	const { entity: user } = userStore
 	const { add: addContact } = contactStore
 	delete contact.__typename
@@ -46,7 +43,6 @@ export const addContact = async (contact: User) => {
 		mutation: ADD_CONTACT,
 		variables: { user: userPayload, contact }
 	})
-	console.log('🚀 ~ addContact ~ data:')
 
 	addContact(data.addContact.contact)
 }

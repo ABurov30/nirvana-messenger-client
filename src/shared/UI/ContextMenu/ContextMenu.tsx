@@ -7,28 +7,29 @@ export const ContextMenu = ({
 	buttons,
 	position
 }: ContextMenuProps) => {
-	console.log(position, 'position')
 	return (
 		<>
 			{isModalOpen && (
 				<div className={styles.modal + ' ' + `${styles[position]}`}>
 					{buttons?.length &&
-						buttons.map(({ conditionToShow, handler, text }) => (
-							<>
-								{conditionToShow && (
-									<button
-										key={text}
-										onClick={e => {
-											handler(e)
-											setIsModalOpen(false)
-										}}
-										className={styles.buttonModal}
-									>
-										{text}
-									</button>
-								)}
-							</>
-						))}
+						buttons.map(
+							({ conditionToShow, handler, text, id }) => (
+								<>
+									{conditionToShow && (
+										<button
+											key={id}
+											onClick={e => {
+												handler(e)
+												setIsModalOpen(false)
+											}}
+											className={styles.buttonModal}
+										>
+											{text}
+										</button>
+									)}
+								</>
+							)
+						)}
 				</div>
 			)}
 		</>

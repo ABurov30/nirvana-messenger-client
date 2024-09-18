@@ -4,6 +4,7 @@ import { EntitiesStore } from '../../shared/store/EntitiesStore'
 
 import { Chat } from './types'
 
+import { appStore } from '../app/store'
 import { Message } from '../message/types'
 
 class ChatStore extends EntitiesStore<Chat> {
@@ -11,7 +12,8 @@ class ChatStore extends EntitiesStore<Chat> {
 		super()
 		makeObservable(this, {
 			updateMessage: action,
-			deleteMessage: action
+			deleteMessage: action,
+			getMessage: action
 		})
 	}
 
@@ -32,11 +34,37 @@ class ChatStore extends EntitiesStore<Chat> {
 				return chat
 			}
 		})
-		return this.entities.find(chat => {
+		const updatedChat = this.entities.find(chat => {
 			if (chat.id === message.chatId) {
 				return chat
 			}
 		})
+		const { activeChat, setActiveChat } = appStore
+		if (updatedChat?.id === activeChat?.id) {
+			setActiveChat(updatedChat)
+		}
+	}
+
+	getMessage = (message: Message): Chat => {
+		this.entities = this.entities.map(chat => {
+			if (chat.id === message.chatId) {
+				return {
+					...chat,
+					messages: [...chat?.messages, message]
+				}
+			} else {
+				return chat
+			}
+		})
+		const updatedChat = this.entities.find(chat => {
+			if (chat.id === message.chatId) {
+				return chat
+			}
+		})
+		const { activeChat, setActiveChat } = appStore
+		if (updatedChat?.id === activeChat?.id) {
+			setActiveChat(updatedChat)
+		}
 	}
 
 	deleteMessage = (message: Message): Chat => {
@@ -54,11 +82,15 @@ class ChatStore extends EntitiesStore<Chat> {
 				return chat
 			}
 		})
-		return this.entities.find(chat => {
+		const updatedChat = this.entities.find(chat => {
 			if (chat.id === message.chatId) {
 				return chat
 			}
 		})
+		const { activeChat, setActiveChat } = appStore
+		if (updatedChat?.id === activeChat?.id) {
+			setActiveChat(updatedChat)
+		}
 	}
 }
 

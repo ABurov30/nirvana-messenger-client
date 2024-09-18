@@ -1,20 +1,24 @@
-import { Suspense } from 'react'
-import MainRoutes from './MainRoutes'
-import { Spin } from 'antd'
-import { ErrorBoundary } from '../shared/HOC/ErrorBoundary/ErrorBoundary'
-import { BrowserRouter } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client'
-import { apolloClient } from '../shared/apollo/client'
-import { GoogleOAuthProvider } from '@react-oauth/google'
 import { injectStores } from '@mobx-devtools/tools'
+import { GoogleOAuthProvider } from '@react-oauth/google'
+import { Spin } from 'antd'
+import { Suspense } from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import { userStore } from '../entities/user/store'
+import { apolloClient } from '../shared/apollo/client'
+import { ErrorBoundary } from '../shared/HOC/ErrorBoundary/ErrorBoundary'
+import MainRoutes from './MainRoutes'
 
+import { appStore } from '../entities/app/store'
 import { chatStore } from '../entities/chat/store'
+import { contactStore } from '../entities/contact/store'
 
 function App(): JSX.Element {
 	injectStores({
 		userStore,
-		chatStore
+		chatStore,
+		contactStore,
+		appStore
 	})
 	return (
 		<>

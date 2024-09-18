@@ -2,9 +2,9 @@ import { toJS } from 'mobx'
 
 import { v4 as uuidv4 } from 'uuid'
 import { cancelProcess } from '../app/actions'
+import { appStore } from '../app/store'
 import { chatStore } from '../chat/store'
 import { userStore } from '../user/store'
-import { appStore } from '../app/store'
 import { Message } from './types'
 
 export const deleteMessage = async (message: Message) => {
@@ -13,8 +13,8 @@ export const deleteMessage = async (message: Message) => {
 
 	socket.emit('delete message', message)
 
-	const updatedChat = deleteMessage(message)
-	setActiveChat(updatedChat)
+	deleteMessage(message)
+
 	cancelProcess()
 }
 
@@ -59,7 +59,7 @@ export const updateMessage = () => {
 
 	socket.emit('update message', obj)
 
-	const updatedChat = updateMessage(obj)
-	setActiveChat(updatedChat)
+	updateMessage(obj)
+
 	cancelProcess()
 }

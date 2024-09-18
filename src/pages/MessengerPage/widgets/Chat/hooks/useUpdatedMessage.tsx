@@ -7,12 +7,14 @@ import { Message } from '../../../../../entities/message/types'
 
 export const useUpdatedMessage = (socket: Socket) => {
 	const { updateMessage } = chatStore
+
 	useEffect(() => {
+		console.log('updated message')
 		socket.on('updated message', async (data: Message) => {
 			try {
 				if (isEmpty(data)) return
 
-				updateMessage(data)
+				// updateMessage(data)
 			} catch (e) {
 				console.error(e)
 			}

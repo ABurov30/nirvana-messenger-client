@@ -16,12 +16,9 @@ const SideSection = observer(() => {
 	const { data, loading } = useQueryByMenuMode()
 
 	setEntityByMenuMode(data, loading)
+	console.log(loading, 'loading')
 	return (
 		<div className={styles.sideSection}>
-			{/* <div className={styles.inputContainer}>
-				<SearchIcon />
-				<input className={styles.input} />
-			</div> */}
 			<CardSection>
 				{loading ? <Spin /> : getEntityListByMenuMode()}
 			</CardSection>

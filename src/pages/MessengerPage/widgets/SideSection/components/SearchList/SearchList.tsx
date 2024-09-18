@@ -146,7 +146,7 @@ const SearchList = observer(() => {
 				) : null}
 				{isExpanded.users &&
 					searchEntities.users?.map(user => {
-						console.log(user, '888888')
+					
 						return (
 							<Card
 								title={user.nickname}
