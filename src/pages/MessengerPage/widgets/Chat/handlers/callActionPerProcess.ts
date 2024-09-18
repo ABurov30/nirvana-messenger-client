@@ -1,9 +1,9 @@
 import { appStore } from '../../../../../entities/app/store'
 import { Process } from '../../../../../entities/app/types'
-import { sendMessage } from './sendMessage'
-import { updateMessage } from './updateMessage'
+import { sendMessage, updateMessage } from '../../../../../entities/message/actions'
 
-export const callHandlerPerProcess = (e: Event) => {
+
+export const callActionPerProcess = (e: Event) => {
 	e.preventDefault()
 	const { process } = appStore
 

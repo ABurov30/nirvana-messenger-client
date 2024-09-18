@@ -12,14 +12,14 @@ import { observer } from 'mobx-react-lite'
 
 import { appStore } from '../../../../entities/app/store'
 import { userStore } from '../../../../entities/user/store'
-import { callHandlerPerProcess } from './handlers/callHandlerPerProcess'
+import { callActionPerProcess, callHandlerPerProcess } from './handlers/callActionPerProcess'
 
 import Message from '../../../../shared/UI/Message/Message'
-import { cancelProcess } from './handlers/cancelProcess'
 import { useDeletedMessage } from './hooks/useDeletedMessage'
 import { useGetMessage } from './hooks/useGetMessage'
 import { useUpdatedMessage } from './hooks/useUpdatedMessage'
 import { getIconPerProcess } from './utils/getIconPerProcess'
+import { cancelProcess } from '../../../../entities/app/actions'
 
 const Chat = observer(() => {
 	const { activeChat } = appStore
@@ -99,7 +99,7 @@ const Chat = observer(() => {
 								<button
 									type="submit"
 									className={styles.button}
-									onClick={e => callHandlerPerProcess(e)}
+									onClick={e => callActionPerProcess(e)}
 								>
 									<Send />
 								</button>

@@ -3,8 +3,8 @@ import { toJS } from 'mobx'
 import { Message } from '../../../../entities/message/types'
 import { userStore } from '../../../../entities/user/store'
 import { Button } from '../../ContextMenu/types'
-import { deleteMessage } from '../handlers/deleteMessage'
 import { startUpdateMessageProcess } from '../handlers/startUpdateMessageProcess'
+import { deleteMessage } from '../../../../entities/message/actions'
 
 export const ButtonsContextMenuConfig = (
 	message: Message

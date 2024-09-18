@@ -15,7 +15,7 @@ class ChatStore extends EntitiesStore<Chat> {
 		})
 	}
 
-	updateMessage = (message: Message) => {
+	updateMessage = (message: Message): Chat => {
 		this.entities = this.entities.map(chat => {
 			if (chat.id === message.chatId) {
 				return {
@@ -32,9 +32,14 @@ class ChatStore extends EntitiesStore<Chat> {
 				return chat
 			}
 		})
+		return this.entities.find(chat => {
+			if (chat.id === message.chatId) {
+				return chat
+			}
+		})
 	}
 
-	deleteMessage = (message: Message) => {
+	deleteMessage = (message: Message): Chat => {
 		this.entities = this.entities.map(chat => {
 			if (chat.id === message.chatId) {
 				return {
@@ -46,6 +51,11 @@ class ChatStore extends EntitiesStore<Chat> {
 					})
 				}
 			} else {
+				return chat
+			}
+		})
+		return this.entities.find(chat => {
+			if (chat.id === message.chatId) {
 				return chat
 			}
 		})
