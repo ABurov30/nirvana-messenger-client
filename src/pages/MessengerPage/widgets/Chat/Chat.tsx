@@ -14,7 +14,6 @@ import { appStore } from '../../../../entities/app/store'
 import { userStore } from '../../../../entities/user/store'
 import { callActionPerProcess } from './handlers/callActionPerProcess'
 
-import { cancelProcess } from '../../../../entities/app/actions'
 import Message from '../../../../shared/UI/Message/Message'
 import { useDeletedMessage } from './hooks/useDeletedMessage'
 import { useGetMessage } from './hooks/useGetMessage'
@@ -33,6 +32,7 @@ const Chat = observer(() => {
 	} = appStore
 
 	const { entity: user } = userStore
+	const { cancelProcess } = appStore
 
 	useUpdatedMessage(socket)
 	useDeletedMessage(socket)

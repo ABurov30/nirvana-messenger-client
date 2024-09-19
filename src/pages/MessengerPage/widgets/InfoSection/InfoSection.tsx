@@ -6,19 +6,18 @@ import { appStore } from '../../../../entities/app/store'
 import { CancelButton } from '../../../../shared/UI/Buttons/CancelButton'
 import { EditButton } from '../../../../shared/UI/Buttons/EditButton'
 
-import { updateChat } from '../../../../entities/chat/actions'
+import { AddButton } from '../../../../shared/UI/Buttons/AddButton'
+import { DeleteMemberButton } from '../../../../shared/UI/Buttons/DeleteMemberButton'
 import { Card } from '../../../../shared/UI/Card/Card'
-import { Modal } from '../../../../shared/UI/Modal/Modal'
 import styles from './InfoSection.module.scss'
-import { startUpdateChatProcess } from './handlers/startUpdateChatProcess'
 
 const InfoSection = observer(() => {
 	const {
 		isInfoSectionOpen,
 		setIsInfoSectionOpen,
 		activeChat,
-		setIsModalOpen,
-		isModalOpen
+		startAddMemberProcess,
+		startUpdateChatProcess
 	} = appStore
 
 	return (
@@ -34,7 +33,9 @@ const InfoSection = observer(() => {
 							fontSize="1.2em"
 							weight="semibold"
 						/>
-						<EditButton onClick={startUpdateChatProcess} />
+						<EditButton
+							onClick={() => startUpdateChatProcess(activeChat)}
+						/>
 					</div>
 					<div className={styles.avatarContainer}>
 						<Avatar
@@ -61,23 +62,26 @@ const InfoSection = observer(() => {
 						</div>
 					</div>
 					<div className={styles.membersContainer}>
-						<Typography
-							text={'Members'}
-							fontSize="1em"
-							weight="semibold"
-						/>
+						<div className={styles.membersHeader}>
+							<Typography
+								text={'Members'}
+								fontSize="1em"
+								weight="semibold"
+							/>
+							<AddButton onClick={startAddMemberProcess} />
+						</div>
 						<div className={styles.members}>
 							{activeChat?.members.map(member => (
-								<Card entity={member} title={member.nickname} />
+								<div className={styles.member}>
+									<Card
+										entity={member}
+										title={member.nickname}
+									/>
+									<DeleteMemberButton />
+								</div>
 							))}
 						</div>
 					</div>
-					<Modal
-						isModalOpen={isModalOpen}
-						setIsModalOpen={setIsModalOpen}
-						entity={activeChat}
-						onConfirm={updateChat}
-					/>
 				</div>
 			)}
 		</>

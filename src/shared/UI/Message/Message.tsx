@@ -16,7 +16,7 @@ const Message = observer(({ message }: MessageProps) => {
 
 	if (isEmpty(toJS(user))) return
 
-	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [isContextMenuOpen, setIsContextMenuOpen] = useState(false)
 
 	return (
 		<>
@@ -31,7 +31,7 @@ const Message = observer(({ message }: MessageProps) => {
 				}
 				onContextMenu={(e: MouseEvent<any>) => {
 					e.preventDefault()
-					setIsModalOpen(prev => !prev)
+					setIsContextMenuOpen(prev => !prev)
 				}}
 			>
 				<Avatar alt={message?.user?.nickname} sx={{ padding: '5px' }}>
@@ -49,8 +49,8 @@ const Message = observer(({ message }: MessageProps) => {
 					}
 				>
 					<ContextMenu
-						isModalOpen={isModalOpen}
-						setIsModalOpen={setIsModalOpen}
+						isOpen={isContextMenuOpen}
+						setIsOpen={setIsContextMenuOpen}
 						buttons={ButtonsContextMenuConfig(message)}
 						position={
 							message.userId === user.id

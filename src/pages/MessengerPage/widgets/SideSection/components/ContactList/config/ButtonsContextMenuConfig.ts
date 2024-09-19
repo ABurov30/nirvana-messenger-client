@@ -1,17 +1,13 @@
-import isEmpty from 'lodash.isempty'
-import { toJS } from 'mobx'
 import { v4 as uuidv4 } from 'uuid'
 import { deleteContact } from '../../../../../../../entities/contact/actions'
 import { Contact } from '../../../../../../../entities/contact/types'
-import { userStore } from '../../../../../../../entities/user/store'
 import { Button } from '../../../../../../../shared/UI/ContextMenu/types'
-import { startUpdateContactProcess } from '../handlers/startUpdateContactProcess'
 
-export const ButtonsContextMenuConfig = (
-	contact: Contact
-): Button[] | undefined => {
-	const { entity: user } = userStore
-	if (isEmpty(toJS(user))) return []
+import { appStore } from '../../../../../../../entities/app/store'
+
+export const ButtonsContextMenuConfig = (contact: Contact): Button[] => {
+	const { startUpdateContactProcess } = appStore
+
 	return [
 		{
 			id: uuidv4(),
@@ -22,7 +18,7 @@ export const ButtonsContextMenuConfig = (
 		{
 			id: uuidv4(),
 			text: 'Delete',
-			handler: (e: Event) => deleteContact(contact.id),
+			handler: (e: Event) => deleteContact(contact?.id),
 			conditionToShow: true
 		}
 	]

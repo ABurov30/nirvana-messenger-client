@@ -6,9 +6,9 @@ import { observer } from 'mobx-react-lite'
 import { appStore } from '../../../../entities/app/store'
 import { MenuMode } from '../../../../entities/app/types'
 import CardSection from '../../../../shared/UI/CardSection/CardSection'
-import { getEntityListByMenuMode } from '../../utils/getEntityListByMenuMode'
-import { setEntityByMenuMode } from '../../utils/setEntityByMenuMode'
-import { useQueryByMenuMode } from '../../utils/useQueryByMenuMode'
+import { getEntityListByMenuMode } from '../../utils/menuMode/getEntityListByMenuMode'
+import { setEntityByMenuMode } from '../../utils/menuMode/setEntityByMenuMode'
+import { useQueryByMenuMode } from '../../utils/menuMode/useQueryByMenuMode'
 import styles from './SideSection.module.scss'
 
 const SideSection = observer(() => {

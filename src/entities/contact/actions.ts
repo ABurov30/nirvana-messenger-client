@@ -1,3 +1,4 @@
+import { toJS } from 'mobx'
 import { apolloClient } from '../../shared/apollo/client'
 import { userStore } from '../user/store'
 import { User } from '../user/types'
@@ -15,6 +16,7 @@ export const deleteContact = async (contactId: string) => {
 }
 
 export const editContact = async (contact: Contact) => {
+	console.log(toJS(contact), '00000000000')
 	const { entity: user } = userStore
 	const { update: editContact } = contactStore
 	delete contact.__typename

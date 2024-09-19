@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite'
 import { Typography } from 'nirvana-uikit'
 import { appStore } from '../../../../../../entities/app/store'
 import { chatStore } from '../../../../../../entities/chat/store'
+import { AddButton } from '../../../../../../shared/UI/Buttons/AddButton'
 import { Card } from '../../../../../../shared/UI/Card/Card'
 import styles from '../List.module.scss'
 import { onChatSelection } from './handlers/onChatSelection'
@@ -13,6 +14,7 @@ const ChatList = observer(() => {
 		<>
 			<div className={styles.header}>
 				<Typography text={'Chats'} fontSize="1.2em" weight="semibold" />
+				<AddButton />
 			</div>
 			{chatsList?.length ? (
 				chatsList.map(chat => {

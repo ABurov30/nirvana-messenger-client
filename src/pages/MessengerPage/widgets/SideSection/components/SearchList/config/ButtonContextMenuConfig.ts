@@ -3,7 +3,7 @@ import { addContact } from '../../../../../../../entities/contact/actions'
 import { User } from '../../../../../../../entities/user/types'
 import { Button } from '../../../../../../../shared/UI/ContextMenu/types'
 
-export const ButtonsContextMenuConfig = (user: User): Button[] | undefined => {
+export const ButtonsContextMenuConfig = (user: User): Button[] => {
 	return [
 		{
 			id: uuidv4(),

@@ -1,30 +1,27 @@
-import isEmpty from 'lodash.isempty'
-import { toJS } from 'mobx'
 import { Message } from '../../../../entities/message/types'
 import { userStore } from '../../../../entities/user/store'
 import { Button } from '../../ContextMenu/types'
-import { startUpdateMessageProcess } from '../handlers/startUpdateMessageProcess'
 
 import { v4 as uuidv4 } from 'uuid'
+import { appStore } from '../../../../entities/app/store'
 import { deleteMessage } from '../../../../entities/message/actions'
 
-export const ButtonsContextMenuConfig = (
-	message: Message
-): Button[] | undefined => {
+export const ButtonsContextMenuConfig = (message: Message): Button[] => {
 	const { entity: user } = userStore
-	if (isEmpty(toJS(user))) return
+	const { startUpdateMessageProcess } = appStore
+
 	return [
 		{
 			id: uuidv4(),
 			text: 'Edit',
-			handler: (e: Event) => startUpdateMessageProcess(e, message),
-			conditionToShow: user.id === message.userId
+			handler: () => startUpdateMessageProcess(message),
+			conditionToShow: user?.id === message.userId
 		},
 		{
 			id: uuidv4(),
 			text: 'Delete',
 			handler: (e: Event) => deleteMessage(message),
-			conditionToShow: user.id === message.userId
+			conditionToShow: user?.id === message.userId
 		}
 	]
 }

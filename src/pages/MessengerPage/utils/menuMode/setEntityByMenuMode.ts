@@ -1,8 +1,8 @@
 import { useLayoutEffect } from 'react'
-import { appStore } from '../../../entities/app/store'
-import { chatStore } from '../../../entities/chat/store'
-import { MenuMode } from '../../../entities/app/types'
-import { contactStore } from '../../../entities/contact/store'
+import { appStore } from '../../../../entities/app/store'
+import { MenuMode } from '../../../../entities/app/types'
+import { chatStore } from '../../../../entities/chat/store'
+import { contactStore } from '../../../../entities/contact/store'
 
 export const setEntityByMenuMode = (data: any, loading: boolean) => {
 	const { set: setChatsList } = chatStore

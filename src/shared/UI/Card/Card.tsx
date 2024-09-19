@@ -3,7 +3,6 @@ import { Typography } from 'nirvana-uikit'
 import React, { MouseEvent, useState } from 'react'
 
 import { ContextMenu } from '../ContextMenu/ContextMenu'
-import { Modal } from '../Modal/Modal'
 import styles from './Card.module.scss'
 import { CardProps } from './types'
 
@@ -31,10 +30,6 @@ export const Card = ({
 				setIsOpen: setIsContextMenuOpen
 		  } as React.Attributes)
 		: contextMenu
-
-	const modal = React.Children.toArray(children).find(
-		child => child.type === Modal
-	)
 
 	return (
 		<div
@@ -64,17 +59,8 @@ export const Card = ({
 						/>
 					) : null}
 				</div>
-				{/* {isContextMenuOpen && ButtonsContextMenuConfig ? (
-					<ContextMenu
-						isModalOpen={isContextMenuOpen}
-						setIsModalOpen={setIsContextMenuOpen}
-						buttons={ButtonsContextMenuConfig(entity)}
-						position={MenuPosition}
-					/>
-				) : null} */}
 				{contextMenuWithProps}
 			</div>
-			{modal}
 		</div>
 	)
 }

@@ -5,6 +5,7 @@ import { User } from '../user/types'
 export enum Process {
 	editMessage = 'editMessage',
 	editContact = 'editContact',
+	addMember = 'addMember',
 	addContact = 'addContact',
 	editChat = 'editChat',
 	none = 'none'

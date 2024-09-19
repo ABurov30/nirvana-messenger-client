@@ -1,4 +1,10 @@
+@import '../../constants/colors.scss';
+
 .button {
 	background-color: transparent;
 	border: none;
+}
+
+.button svg {
+	color: $minor-blue;
 }

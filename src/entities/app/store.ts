@@ -1,6 +1,7 @@
 import { action, makeObservable, observable } from 'mobx'
 import { io, Socket } from 'socket.io-client'
 import { Chat } from '../chat/types'
+import { Contact } from '../contact/types'
 import { Message } from '../message/types'
 import { MenuMode, Process, SearchEntities } from './types'
 
@@ -33,7 +34,12 @@ class AppStore {
 			setInput: action,
 			setProcess: action,
 			setCurrentMessage: action,
-			setActiveChat: action
+			setActiveChat: action,
+			startAddMemberProcess: action,
+			startUpdateContactProcess: action,
+			startUpdateChatProcess: action,
+			startUpdateMessageProcess: action,
+			cancelProcess: action
 		})
 	}
 	setEntityToUpdate = (data: Entity) => {
@@ -62,6 +68,32 @@ class AppStore {
 	}
 	setSearchEntities = (data: SearchEntities) => {
 		this.searchEntities = data
+	}
+
+	startUpdateContactProcess = (data: Contact) => {
+		this.setIsModalOpen(true)
+		this.setEntityToUpdate(data)
+		this.setProcess(Process.editContact)
+	}
+	startAddMemberProcess = () => {
+		this.setIsModalOpen(true)
+		this.setProcess(Process.addMember)
+	}
+	startUpdateChatProcess = (data: Chat) => {
+		this.setIsModalOpen(true)
+		this.setEntityToUpdate(data)
+		this.setProcess(Process.editChat)
+	}
+	startUpdateMessageProcess = (message: Message) => {
+		this.setInput(message.message)
+		this.setProcess(Process.editMessage)
+		this.setCurrentMessage(message)
+	}
+	cancelProcess = () => {
+		this.setProcess(Process.none)
+		this.setInput('')
+		this.setEntityToUpdate({})
+		this.setCurrentMessage({} as Message)
 	}
 }
 
