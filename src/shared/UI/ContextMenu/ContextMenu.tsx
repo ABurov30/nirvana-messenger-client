@@ -2,14 +2,14 @@ import styles from './ContextMenu.module.scss'
 import { ContextMenuProps } from './types'
 
 export const ContextMenu = ({
-	isModalOpen,
-	setIsModalOpen,
+	isOpen,
+	setIsOpen,
 	buttons,
 	position
 }: ContextMenuProps) => {
 	return (
 		<>
-			{isModalOpen && (
+			{isOpen && (
 				<div className={styles.modal + ' ' + `${styles[position]}`}>
 					{buttons?.length &&
 						buttons.map(
@@ -20,7 +20,7 @@ export const ContextMenu = ({
 											key={id}
 											onClick={e => {
 												handler(e)
-												setIsModalOpen(false)
+												setIsOpen(false)
 											}}
 											className={styles.buttonModal}
 										>

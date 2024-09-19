@@ -1,8 +1,8 @@
 export interface ContextMenuProps {
-	isModalOpen: boolean
-	setIsModalOpen: (arg: boolean) => void
-	buttons?: Button[]
-	position: ContextMenuPosition
+	isOpen?: boolean
+	setIsOpen?: (arg: boolean) => void
+	buttons: Button[]
+	position?: ContextMenuPosition
 }
 
 export interface Button {

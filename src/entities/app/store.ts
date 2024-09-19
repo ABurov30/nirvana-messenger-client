@@ -11,6 +11,7 @@ class AppStore {
 	activeChat: Chat = {} as Chat
 	socket: Socket = io(import.meta.env.VITE_SOCKET_BASE_URL).connect()
 	currentMessage: Message = {} as Message
+	entityToUpdate: Entity = {} as Entity
 	isModalOpen: boolean = false
 	isInfoSectionOpen: boolean = false
 	searchEntities: SearchEntities = { messages: [], chats: [], users: [] }
@@ -24,6 +25,8 @@ class AppStore {
 			isModalOpen: observable,
 			activeChat: observable,
 			searchEntities: observable,
+			entityToUpdate: observable,
+			setEntityToUpdate: action,
 			setIsModalOpen: action,
 			setIsInfoSectionOpen: action,
 			setMenuMode: action,
@@ -32,6 +35,9 @@ class AppStore {
 			setCurrentMessage: action,
 			setActiveChat: action
 		})
+	}
+	setEntityToUpdate = (data: Entity) => {
+		this.entityToUpdate = data
 	}
 	setActiveChat = (data: Chat) => {
 		this.activeChat = data

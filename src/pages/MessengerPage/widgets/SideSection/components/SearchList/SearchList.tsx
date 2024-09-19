@@ -9,6 +9,7 @@ import { Card } from '../../../../../../shared/UI/Card/Card'
 import { onChatSelection } from '../ChatList/handlers/onChatSelection'
 import styles from './SearchList.module.scss'
 
+import { ContextMenu } from '../../../../../../shared/UI/ContextMenu/ContextMenu'
 import { ButtonsContextMenuConfig } from './config/ButtonContextMenuConfig'
 import { getSearchEntities } from './handlers/getSearchEntities'
 
@@ -146,16 +147,16 @@ const SearchList = observer(() => {
 				) : null}
 				{isExpanded.users &&
 					searchEntities.users?.map(user => {
-					
 						return (
 							<Card
 								title={user.nickname}
 								key={user.id}
 								entity={user}
-								ButtonsContextMenuConfig={
-									ButtonsContextMenuConfig
-								}
-							/>
+							>
+								<ContextMenu
+									buttons={ButtonsContextMenuConfig(user)}
+								/>
+							</Card>
 						)
 					})}
 			</div>

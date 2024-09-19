@@ -1,6 +1,7 @@
 import { Avatar } from '@mui/material'
 import { Typography } from 'nirvana-uikit'
-import { MouseEvent, useState } from 'react'
+import React, { MouseEvent, useState } from 'react'
+
 import { ContextMenu } from '../ContextMenu/ContextMenu'
 import { Modal } from '../Modal/Modal'
 import styles from './Card.module.scss'
@@ -12,17 +13,29 @@ export const Card = ({
 	onSelection,
 	entity,
 	activeEntity,
-	ButtonsContextMenuConfig,
-	MenuPosition,
-	isModalOpen,
-	setIsModalOpen,
-	onModalConfirm
+	children
 }: CardProps) => {
 	const [isContextMenuOpen, setIsContextMenuOpen] = useState(false)
 	const onContextMenu = (e: MouseEvent<any>) => {
 		e.preventDefault()
 		setIsContextMenuOpen(prev => !prev)
 	}
+
+	const contextMenu = React.Children.toArray(children).find(
+		child => child.type === ContextMenu
+	)
+
+	const contextMenuWithProps = React.isValidElement(contextMenu)
+		? React.cloneElement(contextMenu, {
+				isOpen: isContextMenuOpen,
+				setIsOpen: setIsContextMenuOpen
+		  } as React.Attributes)
+		: contextMenu
+
+	const modal = React.Children.toArray(children).find(
+		child => child.type === Modal
+	)
+
 	return (
 		<div
 			className={`${styles.card} ${
@@ -51,23 +64,17 @@ export const Card = ({
 						/>
 					) : null}
 				</div>
-				{isContextMenuOpen && ButtonsContextMenuConfig ? (
+				{/* {isContextMenuOpen && ButtonsContextMenuConfig ? (
 					<ContextMenu
 						isModalOpen={isContextMenuOpen}
 						setIsModalOpen={setIsContextMenuOpen}
 						buttons={ButtonsContextMenuConfig(entity)}
 						position={MenuPosition}
 					/>
-				) : null}
+				) : null} */}
+				{contextMenuWithProps}
 			</div>
-			{isModalOpen ? (
-				<Modal
-					isModalOpen={isModalOpen}
-					setIsModalOpen={setIsModalOpen}
-					entity={entity}
-					onConfirm={onModalConfirm}
-				/>
-			) : null}
+			{modal}
 		</div>
 	)
 }

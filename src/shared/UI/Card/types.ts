@@ -1,5 +1,4 @@
-import { MouseEvent } from 'react'
-import { Button, ContextMenuPosition } from '../ContextMenu/types'
+import { ReactNode } from 'react'
 
 export interface CardProps {
 	title: string
@@ -7,12 +6,10 @@ export interface CardProps {
 	onSelection?: () => void
 	entity?: Entity
 	activeEntity?: Entity
-	ButtonsContextMenuConfig?: (arg: Entity) => Button[]
-	onContextMenu: (e: MouseEvent<any>) => void
-	setIsContextMenuOpen?: (arg: boolean) => void
-	isContextMenuOpen?: boolean
-	MenuPosition?: ContextMenuPosition
-	isModalOpen?: boolean
-	setIsModalOpen?: (arg: boolean) => void
-	onModalConfirm?: (arg: Entity) => Promise<void>
+	// ButtonsContextMenuConfig?: (arg: Entity) => Button[]
+	// onContextMenu: (e: MouseEvent<any>) => void
+	// setIsContextMenuOpen?: (arg: boolean) => void
+	// isContextMenuOpen?: boolean
+	// MenuPosition?: ContextMenuPosition
+	children?: ReactNode
 }
