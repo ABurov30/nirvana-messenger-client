@@ -6,11 +6,20 @@ import { appStore } from '../../../../entities/app/store'
 import { CancelButton } from '../../../../shared/UI/Buttons/CancelButton'
 import { EditButton } from '../../../../shared/UI/Buttons/EditButton'
 
+import { updateChat } from '../../../../entities/chat/actions'
 import { Card } from '../../../../shared/UI/Card/Card'
+import { Modal } from '../../../../shared/UI/Modal/Modal'
 import styles from './InfoSection.module.scss'
+import { startUpdateChatProcess } from './handlers/startUpdateChatProcess'
 
 const InfoSection = observer(() => {
-	const { isInfoSectionOpen, setIsInfoSectionOpen, activeChat } = appStore
+	const {
+		isInfoSectionOpen,
+		setIsInfoSectionOpen,
+		activeChat,
+		setIsModalOpen,
+		isModalOpen
+	} = appStore
 
 	return (
 		<>
@@ -25,7 +34,7 @@ const InfoSection = observer(() => {
 							fontSize="1.2em"
 							weight="semibold"
 						/>
-						<EditButton onClick={() => {}} />
+						<EditButton onClick={startUpdateChatProcess} />
 					</div>
 					<div className={styles.avatarContainer}>
 						<Avatar
@@ -63,6 +72,12 @@ const InfoSection = observer(() => {
 							))}
 						</div>
 					</div>
+					<Modal
+						isModalOpen={isModalOpen}
+						setIsModalOpen={setIsModalOpen}
+						entity={activeChat}
+						onConfirm={updateChat}
+					/>
 				</div>
 			)}
 		</>

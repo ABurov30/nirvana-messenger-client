@@ -13,7 +13,13 @@ const ContactList = observer(() => {
 
 	return (
 		<>
-			<Typography text={'Contacts'} fontSize="1.2em" weight="semibold" />
+			<div className={styles.header}>
+				<Typography
+					text={'Contacts'}
+					fontSize="1.2em"
+					weight="semibold"
+				/>
+			</div>
 			{contactList?.length ? (
 				contactList.map(contact => {
 					return (

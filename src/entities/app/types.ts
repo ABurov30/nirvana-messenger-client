@@ -6,6 +6,7 @@ export enum Process {
 	editMessage = 'editMessage',
 	editContact = 'editContact',
 	addContact = 'addContact',
+	editChat = 'editChat',
 	none = 'none'
 }
 

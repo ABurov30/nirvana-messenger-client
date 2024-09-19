@@ -5,7 +5,8 @@ import { Chat } from '../../../../../../../entities/chat/types'
 export const onChatSelection = (chat: Chat) => {
 	if (isEmpty(chat)) return
 
-	const { setInput, setActiveChat } = appStore
+	const { setInput, setActiveChat, setIsInfoSectionOpen } = appStore
+	setIsInfoSectionOpen(false)
 	setActiveChat(chat)
 	setInput('')
 }
