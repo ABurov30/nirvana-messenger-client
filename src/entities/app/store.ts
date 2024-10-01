@@ -1,5 +1,7 @@
-import { action, makeObservable, observable } from 'mobx'
+import isEmpty from 'lodash.isempty'
+import { action, autorun, makeObservable, observable, toJS } from 'mobx'
 import { io, Socket } from 'socket.io-client'
+import { chatStore } from '../chat/store'
 import { Chat } from '../chat/types'
 import { Contact } from '../contact/types'
 import { Message } from '../message/types'
@@ -40,8 +42,37 @@ class AppStore {
 			startUpdateChatProcess: action,
 			startUpdateMessageProcess: action,
 			cancelProcess: action
-		})
+		}),
+			autorun(() => {
+				this.socket.on('added members', async (data: Chat) => {
+					try {
+						const {
+							updateChat,
+							add: addChat,
+							entities: chats
+						} = chatStore
+
+						if (isEmpty(data)) return
+
+						const chatToUpdate = chats.find(
+							chat => chat.id === data.id
+						)
+
+						if (chatToUpdate) {
+							updateChat(data)
+							if (data.id === toJS(this.activeChat).id) {
+								this.setActiveChat(data)
+							}
+						}
+
+						if (!chatToUpdate) addChat(data)
+					} catch (e) {
+						console.error(e)
+					}
+				})
+			})
 	}
+
 	setEntityToUpdate = (data: Entity) => {
 		this.entityToUpdate = data
 	}
@@ -77,6 +108,7 @@ class AppStore {
 	}
 	startAddMemberProcess = () => {
 		this.setIsModalOpen(true)
+		this.setEntityToUpdate([])
 		this.setProcess(Process.addMember)
 	}
 	startUpdateChatProcess = (data: Chat) => {

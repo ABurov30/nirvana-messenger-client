@@ -7,6 +7,7 @@ export const Modal = ({
 	isModalOpen,
 	setIsModalOpen,
 	onConfirm,
+	onClose,
 	children
 }: ModalProps) => {
 	return (
@@ -18,7 +19,10 @@ export const Modal = ({
 						<div className={styles.form}>
 							<div className={styles.header}>
 								<CancelButton
-									onClick={() => setIsModalOpen(false)}
+									onClick={() => {
+										setIsModalOpen(false)
+										onClose()
+									}}
 								/>
 								<ConfirmButton
 									onClick={e => {

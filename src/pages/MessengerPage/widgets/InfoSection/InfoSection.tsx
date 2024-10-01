@@ -72,7 +72,7 @@ const InfoSection = observer(() => {
 						</div>
 						<div className={styles.members}>
 							{activeChat?.members.map(member => (
-								<div className={styles.member}>
+								<div key={member?.id} className={styles.member}>
 									<Card
 										entity={member}
 										title={member.nickname}

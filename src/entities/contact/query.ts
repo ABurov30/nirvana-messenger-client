@@ -11,11 +11,32 @@ export const GET_ALL_CONTACTS_BY_USER = gql`
 			contacts {
 				id
 				name
-					user {
-						id
-						nickname
-						email
-					}
+				user {
+					id
+					nickname
+					email
+				}
+			}
+		}
+	}
+`
+
+export const GET_ALL_CONTACTS_TO_ADD_IN_CHAT = gql`
+	query getContactsToAddInChat($userId: String!, $chatId: String!) {
+		getContactsToAddInChat(userId: $userId, chatId: $chatId) {
+			success
+			errors {
+				code
+				message
+			}
+			contacts {
+				id
+				name
+				user {
+					id
+					nickname
+					email
+				}
 			}
 		}
 	}

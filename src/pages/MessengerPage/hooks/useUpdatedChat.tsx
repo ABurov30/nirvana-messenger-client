@@ -9,7 +9,6 @@ export const useUpdatedChat = (socket: Socket) => {
 	const { updateChat } = chatStore
 
 	useEffect(() => {
-		console.log(' run updateCHat data in useEffect')
 		socket.on('updated chat', async (data: Chat) => {
 			try {
 				if (isEmpty(data)) return

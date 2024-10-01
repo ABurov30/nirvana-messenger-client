@@ -22,6 +22,7 @@ import { getIconPerProcess } from './utils/getIconPerProcess'
 
 const Chat = observer(() => {
 	const { activeChat } = appStore
+
 	const {
 		input,
 		setInput,

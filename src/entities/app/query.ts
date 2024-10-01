@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const GET_SEARCH_ENTITIES = gql`
-	query getSearchEntities($input: String!) {
-		getSearchEntities(input: $input) {
+	query getSearchEntities($input: String!, $userId: String!) {
+		getSearchEntities(input: $input, userId: $userId) {
 			success
 			errors {
 				code

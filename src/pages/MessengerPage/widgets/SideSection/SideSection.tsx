@@ -16,7 +16,7 @@ const SideSection = observer(() => {
 	const { data, loading } = useQueryByMenuMode()
 
 	setEntityByMenuMode(data, loading)
-	console.log(loading, 'loading')
+
 	return (
 		<div className={styles.sideSection}>
 			<CardSection>

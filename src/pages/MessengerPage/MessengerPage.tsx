@@ -3,15 +3,18 @@ import { appStore } from '../../entities/app/store'
 import { Modal } from '../../shared/UI/Modal/Modal'
 import { useUpdatedChat } from './hooks/useUpdatedChat'
 import styles from './MessengerPage.module.scss'
-import Chat from './widgets/Chat/Chat'
-import InfoSection from './widgets/InfoSection/InfoSection'
-import SideSection from './widgets/SideSection/SideSection'
 import { getModalChildrenByProcess } from './utils/process/getModalChildrenByProcess'
 import { getOnConfirmByProcess } from './utils/process/getOnConfirmByProcess'
 
+import Chat from './widgets/Chat/Chat'
+import InfoSection from './widgets/InfoSection/InfoSection'
+import SideSection from './widgets/SideSection/SideSection'
+
 const MessengerPage = observer(() => {
-	const { socket, setIsModalOpen, isModalOpen } = appStore
+	const { socket, setIsModalOpen, isModalOpen, cancelProcess } = appStore
+
 	useUpdatedChat(socket)
+
 	return (
 		<div className={styles.container}>
 			<SideSection />
@@ -21,6 +24,7 @@ const MessengerPage = observer(() => {
 				setIsModalOpen={setIsModalOpen}
 				isModalOpen={isModalOpen}
 				onConfirm={getOnConfirmByProcess()}
+				onClose={cancelProcess}
 			>
 				{getModalChildrenByProcess()}
 			</Modal>

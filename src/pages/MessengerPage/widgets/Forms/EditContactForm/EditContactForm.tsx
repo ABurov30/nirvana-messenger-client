@@ -2,8 +2,9 @@ import { Avatar } from '@mui/material'
 import { Typography } from 'nirvana-uikit'
 import { appStore } from '../../../../../entities/app/store'
 import styles from './EditContactForm.module.scss'
+import { observer } from 'mobx-react-lite'
 
-export const EditContactForm = () => {
+export const EditContactForm = observer(() => {
 	const { entityToUpdate, setEntityToUpdate } = appStore
 	return (
 		<div className={styles.nameContainer}>
@@ -24,4 +25,4 @@ export const EditContactForm = () => {
 			</div>
 		</div>
 	)
-}
+})

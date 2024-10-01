@@ -15,7 +15,7 @@ import { getSearchEntities } from './handlers/getSearchEntities'
 
 const SearchList = observer(() => {
 	const [input, setInput] = useState('')
-	const { searchEntities } = appStore
+	const { searchEntities, setSearchEntities } = appStore
 
 	const [isExpanded, setIsExpanded] = useState({
 		chats: false,
@@ -27,11 +27,17 @@ const SearchList = observer(() => {
 		if (!input) return
 		const id = setTimeout(() => {
 			getSearchEntities(input)
-		}, 300)
+		}, 100)
 		return () => {
 			clearTimeout(id)
 		}
 	}, [input])
+
+	useEffect(() => {
+		return () => {
+			setSearchEntities({})
+		}
+	}, [])
 	return (
 		<>
 			<div className={styles.inputContainer}>
@@ -117,7 +123,7 @@ const SearchList = observer(() => {
 					})}
 			</div>
 			<div className={styles.expandableSection}>
-				{searchEntities.users.length ? (
+				{searchEntities.users?.length ? (
 					<div className={styles.firstRowInExpandableSection}>
 						<Typography text={'Users'} />
 						{isExpanded.users ? (

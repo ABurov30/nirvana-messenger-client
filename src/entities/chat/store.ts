@@ -5,6 +5,7 @@ import { EntitiesStore } from '../../shared/store/EntitiesStore'
 import { Chat } from './types'
 
 import { appStore } from '../app/store'
+import { Contact } from '../contact/types'
 import { Message } from '../message/types'
 
 class ChatStore extends EntitiesStore<Chat> {
@@ -13,7 +14,8 @@ class ChatStore extends EntitiesStore<Chat> {
 		makeObservable(this, {
 			updateMessage: action,
 			deleteMessage: action,
-			getMessage: action
+			getMessage: action,
+			addMember: action
 		})
 	}
 
@@ -99,6 +101,20 @@ class ChatStore extends EntitiesStore<Chat> {
 		if (updatedChat?.id === activeChat?.id) {
 			setActiveChat(updatedChat)
 		}
+	}
+
+	addMember = (members: Contact[]) => {
+		const { socket, cancelProcess, activeChat } = appStore
+
+		const usersToAdd = members.map(member => member?.user)
+		socket.emit('add members', { usersToAdd, chatId: activeChat.id })
+
+		const updatedChat = {
+			...activeChat,
+			members: [...activeChat?.members, ...usersToAdd]
+		}
+		this.updateChat(updatedChat)
+		cancelProcess()
 	}
 }
 

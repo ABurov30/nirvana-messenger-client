@@ -12,7 +12,8 @@ export const useQueryByMenuMode = () => {
 	const { data, loading } = useQuery(getQueryByMenuMode(menuMode), {
 		variables: {
 			id
-		}
+		},
+		fetchPolicy: 'no-cache'
 	})
 
 	return { data, loading }

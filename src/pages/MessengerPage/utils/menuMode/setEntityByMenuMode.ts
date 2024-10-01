@@ -11,11 +11,15 @@ export const setEntityByMenuMode = (data: any, loading: boolean) => {
 
 	useLayoutEffect(() => {
 		if (!loading) {
-			if (menuMode === MenuMode.chat) {
-				setChatsList(data?.getChatsByUser?.chats)
-			}
-			if (menuMode === MenuMode.contact) {
-				setContactList(data?.getContactsByUser?.contacts)
+			switch (menuMode) {
+				case MenuMode.contact:
+					setContactList(data?.getContactsByUser?.contacts)
+					break
+				case MenuMode.chat:
+					setChatsList(data?.getChatsByUser?.chats)
+					break
+				default:
+					return
 			}
 		}
 	}, [data])

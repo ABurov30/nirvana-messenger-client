@@ -2,8 +2,9 @@ import { Avatar } from '@mui/material'
 import { Typography } from 'nirvana-uikit'
 import { appStore } from '../../../../../entities/app/store'
 import styles from './EditChatForm.module.scss'
+import { observer } from 'mobx-react-lite'
 
-export const EditChatForm = () => {
+export const EditChatForm = observer(() => {
 	const { entityToUpdate, setEntityToUpdate } = appStore
 	return (
 		<div className={styles.nameContainer}>
@@ -24,4 +25,4 @@ export const EditChatForm = () => {
 			</div>
 		</div>
 	)
-}
+})

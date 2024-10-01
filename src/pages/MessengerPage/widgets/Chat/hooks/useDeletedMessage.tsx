@@ -9,7 +9,6 @@ export const useDeletedMessage = (socket: Socket) => {
 
 	useEffect(() => {
 		socket.on('deleted message', async (data: Message) => {
-			console.log('deleted message')
 			try {
 				if (isEmpty(data)) return
 

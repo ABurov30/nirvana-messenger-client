@@ -47,7 +47,7 @@ function AuthPage() {
 			}
 		},
 
-		onError: err => console.log(err, 'err')
+		onError: err => console.error(err, 'err')
 	})
 
 	useEffect(() => {
