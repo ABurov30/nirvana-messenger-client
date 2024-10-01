@@ -6,6 +6,8 @@ import { appStore } from '../../../../entities/app/store'
 import { CancelButton } from '../../../../shared/UI/Buttons/CancelButton'
 import { EditButton } from '../../../../shared/UI/Buttons/EditButton'
 
+import { chatStore } from '../../../../entities/chat/store'
+import { userStore } from '../../../../entities/user/store'
 import { AddButton } from '../../../../shared/UI/Buttons/AddButton'
 import { DeleteMemberButton } from '../../../../shared/UI/Buttons/DeleteMemberButton'
 import { Card } from '../../../../shared/UI/Card/Card'
@@ -19,7 +21,8 @@ const InfoSection = observer(() => {
 		startAddMemberProcess,
 		startUpdateChatProcess
 	} = appStore
-
+	const { deleteMember } = chatStore
+	const { entity: user } = userStore
 	return (
 		<>
 			{isInfoSectionOpen && (
@@ -71,13 +74,19 @@ const InfoSection = observer(() => {
 							<AddButton onClick={startAddMemberProcess} />
 						</div>
 						<div className={styles.members}>
-							{activeChat?.members.map(member => (
+							{activeChat?.members?.map(member => (
 								<div key={member?.id} className={styles.member}>
 									<Card
 										entity={member}
 										title={member.nickname}
 									/>
-									<DeleteMemberButton />
+									{member.id !== user?.id && (
+										<DeleteMemberButton
+											onClick={() =>
+												deleteMember(member.id)
+											}
+										/>
+									)}
 								</div>
 							))}
 						</div>

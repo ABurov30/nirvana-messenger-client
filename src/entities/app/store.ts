@@ -1,10 +1,12 @@
 import isEmpty from 'lodash.isempty'
-import { action, autorun, makeObservable, observable, toJS } from 'mobx'
+import { action, autorun, makeObservable, observable } from 'mobx'
 import { io, Socket } from 'socket.io-client'
 import { chatStore } from '../chat/store'
 import { Chat } from '../chat/types'
 import { Contact } from '../contact/types'
 import { Message } from '../message/types'
+import { userStore } from '../user/store'
+import { ActiveUser } from '../user/types'
 import { MenuMode, Process, SearchEntities } from './types'
 
 class AppStore {
@@ -60,9 +62,6 @@ class AppStore {
 
 						if (chatToUpdate) {
 							updateChat(data)
-							if (data.id === toJS(this.activeChat).id) {
-								this.setActiveChat(data)
-							}
 						}
 
 						if (!chatToUpdate) addChat(data)
@@ -70,6 +69,49 @@ class AppStore {
 						console.error(e)
 					}
 				})
+			}),
+			autorun(() => {
+				this.socket.on(
+					'deleted member',
+					async (data: {
+						updatedChat: Chat
+						memberId: ActiveUser['id']
+					}) => {
+						try {
+							const {
+								updateChat,
+								delete: deleteChat,
+								entities: chats
+							} = chatStore
+
+							const { entity: user } = userStore
+
+							if (isEmpty(data)) return
+
+							if (data.memberId === user.id) {
+								deleteChat(data?.updatedChat?.id)
+
+								if (
+									data.updatedChat.id === this.activeChat.id
+								) {
+									this.setActiveChat({} as Chat)
+									this.setIsInfoSectionOpen(false)
+								}
+								return
+							}
+
+							const chatToUpdate = chats.find(
+								chat => chat.id === data.updatedChat.id
+							)
+
+							if (chatToUpdate) {
+								updateChat(data.updatedChat)
+							}
+						} catch (e) {
+							console.error(e)
+						}
+					}
+				)
 			})
 	}
 

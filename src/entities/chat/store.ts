@@ -7,6 +7,7 @@ import { Chat } from './types'
 import { appStore } from '../app/store'
 import { Contact } from '../contact/types'
 import { Message } from '../message/types'
+import { ActiveUser } from '../user/types'
 
 class ChatStore extends EntitiesStore<Chat> {
 	constructor() {
@@ -112,6 +113,20 @@ class ChatStore extends EntitiesStore<Chat> {
 		const updatedChat = {
 			...activeChat,
 			members: [...activeChat?.members, ...usersToAdd]
+		}
+		this.updateChat(updatedChat)
+		cancelProcess()
+	}
+
+	deleteMember = (memberId: ActiveUser['id']) => {
+		const { socket, cancelProcess, activeChat } = appStore
+		socket.emit('delete member', { memberId, chatId: activeChat.id })
+
+		const updatedChat = {
+			...activeChat,
+			members: activeChat?.members.filter(
+				member => member?.id !== memberId
+			)
 		}
 		this.updateChat(updatedChat)
 		cancelProcess()

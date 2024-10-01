@@ -12,7 +12,6 @@ export const GET_ALL_CHATS_BY_USER = gql`
 				id
 				name
 				lastMessage
-				isNewMessage
 				messages {
 					id
 					userId

@@ -12,7 +12,6 @@ export const GET_SEARCH_ENTITIES = gql`
 				id
 				name
 				lastMessage
-				isNewMessage
 				messages {
 					id
 					userId
