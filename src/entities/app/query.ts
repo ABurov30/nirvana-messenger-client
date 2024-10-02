@@ -11,7 +11,6 @@ export const GET_SEARCH_ENTITIES = gql`
 			chats {
 				id
 				name
-				lastMessage
 				messages {
 					id
 					userId

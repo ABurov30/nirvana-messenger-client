@@ -78,6 +78,15 @@ class ChatStore extends EntitiesStore<Chat> {
 		}
 	}
 
+	deleteChat = (chatId: Chat['id']) => {
+		this.delete(chatId)
+		const { activeChat, setActiveChat, setIsInfoSectionOpen } = appStore
+		if (chatId === activeChat?.id) {
+			setActiveChat({})
+			setIsInfoSectionOpen(false)
+		}
+	}
+
 	deleteMessage = (message: Message): Chat => {
 		this.entities = this.entities.map(chat => {
 			if (chat.id === message.chatId) {

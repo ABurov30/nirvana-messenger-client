@@ -71,6 +71,23 @@ class AppStore {
 				})
 			}),
 			autorun(() => {
+				this.socket.on('deleted chat', async (data: Chat['id']) => {
+					console.log(
+						'🚀 ~ AppStore deleted chat ~ this.socket.on ~ data:',
+						data
+					)
+					try {
+						const { deleteChat } = chatStore
+
+						if (isEmpty(data)) return
+
+						deleteChat(data?.chatId)
+					} catch (e) {
+						console.error(e)
+					}
+				})
+			}),
+			autorun(() => {
 				this.socket.on(
 					'deleted member',
 					async (data: {

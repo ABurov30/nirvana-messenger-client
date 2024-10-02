@@ -1,14 +1,14 @@
 import { gql } from '@apollo/client'
 
-export const GET_ALL_CHATS_BY_USER = gql`
-	query getChatsByUser($id: String!) {
-		getChatsByUser(id: $id) {
+export const ADD_CHAT = gql`
+	mutation addChat($userId: String!) {
+		addChat(userId: $userId) {
 			success
 			errors {
 				code
 				message
 			}
-			chats {
+			chat {
 				id
 				name
 				messages {
