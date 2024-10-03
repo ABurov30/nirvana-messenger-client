@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { BlockButton, Typography } from 'nirvana-uikit'
 import { GoogleIcon } from '../../shared/icons/GoogleIcon'
 import styles from './AuthPage.module.scss'

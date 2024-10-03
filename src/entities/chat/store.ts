@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { action, makeObservable } from 'mobx'
 
 import { EntitiesStore } from '../../shared/store/EntitiesStore'

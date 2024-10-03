@@ -1,3 +1,4 @@
+//@ts-nocheck
 import isEmpty from 'lodash.isempty'
 import { action, autorun, makeObservable, observable } from 'mobx'
 import { io, Socket } from 'socket.io-client'

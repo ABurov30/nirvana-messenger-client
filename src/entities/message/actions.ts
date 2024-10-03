@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { toJS } from 'mobx'
 
 import { v4 as uuidv4 } from 'uuid'

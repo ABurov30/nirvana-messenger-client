@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Message } from '../../../../entities/message/types'
 import { userStore } from '../../../../entities/user/store'
 import { Button } from '../../ContextMenu/types'

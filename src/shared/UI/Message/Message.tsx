@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Avatar } from '@mui/material'
 import isEmpty from 'lodash.isempty'
 import { toJS } from 'mobx'

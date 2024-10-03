@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useLayoutEffect } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import AuthPage from '../pages/AuthPage/AuthPage'

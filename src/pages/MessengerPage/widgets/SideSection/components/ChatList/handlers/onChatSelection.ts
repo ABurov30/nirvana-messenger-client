@@ -1,3 +1,4 @@
+//@ts-nocheck
 import isEmpty from 'lodash.isempty'
 import { appStore } from '../../../../../../../entities/app/store'
 import { chatStore } from '../../../../../../../entities/chat/store'

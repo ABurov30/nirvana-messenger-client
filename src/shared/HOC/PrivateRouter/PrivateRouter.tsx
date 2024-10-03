@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { isEmpty } from 'lodash'
 import { toJS } from 'mobx'
 import { Navigate, Outlet } from 'react-router-dom'

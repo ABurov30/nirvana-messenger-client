@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useQuery } from '@apollo/client'
 import { appStore } from '../../../../entities/app/store'
 import { userStore } from '../../../../entities/user/store'

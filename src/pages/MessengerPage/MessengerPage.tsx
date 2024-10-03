@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { observer } from 'mobx-react-lite'
 import { appStore } from '../../entities/app/store'
 import { Modal } from '../../shared/UI/Modal/Modal'

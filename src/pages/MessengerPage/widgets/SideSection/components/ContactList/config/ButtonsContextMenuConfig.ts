@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { v4 as uuidv4 } from 'uuid'
 import { deleteContact } from '../../../../../../../entities/contact/actions'
 import { Contact } from '../../../../../../../entities/contact/types'

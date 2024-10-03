@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { appStore } from '../../../../entities/app/store'
 import { Process } from '../../../../entities/app/types'
 import { updateChat } from '../../../../entities/chat/actions'

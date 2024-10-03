@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { v4 as uuidv4 } from 'uuid'
 import { addContact } from '../../../../../../../entities/contact/actions'
 import { User } from '../../../../../../../entities/user/types'

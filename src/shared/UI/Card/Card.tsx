@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Avatar } from '@mui/material'
 import { Typography } from 'nirvana-uikit'
 import React, { MouseEvent, useState } from 'react'

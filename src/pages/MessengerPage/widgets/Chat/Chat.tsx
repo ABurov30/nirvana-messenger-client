@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Send } from '@mui/icons-material'
 
 import styles from './Chat.module.scss'

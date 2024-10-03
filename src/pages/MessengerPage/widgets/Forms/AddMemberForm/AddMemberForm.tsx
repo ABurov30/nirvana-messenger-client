@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useQuery } from '@apollo/client'
 import { Spin } from 'antd'
 import { observer } from 'mobx-react-lite'

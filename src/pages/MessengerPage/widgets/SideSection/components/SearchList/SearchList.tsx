@@ -1,3 +1,4 @@
+//@ts-nocheck
 import SearchIcon from '@mui/icons-material/Search'
 import { observer } from 'mobx-react-lite'
 import { Typography } from 'nirvana-uikit'

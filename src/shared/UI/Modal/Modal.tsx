@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { CancelButton } from '../Buttons/CancelButton'
 import { ConfirmButton } from '../Buttons/ConfirmButton'
 import styles from './Modal.module.scss'

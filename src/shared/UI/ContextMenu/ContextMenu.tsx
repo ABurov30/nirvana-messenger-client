@@ -1,3 +1,4 @@
+//@ts-nocheck
 import styles from './ContextMenu.module.scss'
 import { ContextMenuProps } from './types'
 

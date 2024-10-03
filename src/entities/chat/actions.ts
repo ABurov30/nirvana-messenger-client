@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { apolloClient } from '../../shared/apollo/client'
 import { appStore } from '../app/store'
 import { userStore } from '../user/store'

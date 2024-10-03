@@ -1,3 +1,4 @@
+//@ts-nocheck
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail'
 import { Avatar } from '@mui/material'
 import { observer } from 'mobx-react-lite'

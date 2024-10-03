@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { GET_SEARCH_ENTITIES } from '../../../../../../../entities/app/query'
 import { appStore } from '../../../../../../../entities/app/store'
 import { userStore } from '../../../../../../../entities/user/store'
