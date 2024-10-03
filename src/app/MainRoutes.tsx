@@ -22,6 +22,9 @@ export default function MainRoutes() {
 				navigate('/')
 			}
 
+			const responseMessage = { user, status: 'success' }
+			window.parent.postMessage(responseMessage, '*')
+
 			console.log('Полученные данные пользователя:', user)
 		}
 
