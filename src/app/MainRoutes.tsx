@@ -35,10 +35,10 @@ export default function MainRoutes() {
 	}, [])
 	return (
 		<Routes>
-			<Route element={<PrivateRouter />}>
+			{/* <Route element={<PrivateRouter />}> */}
 				<Route path="/" element={<MessengerPage />} />
-			</Route>
-			<Route path="/login" element={<AuthPage />} />
+			{/* </Route>
+			<Route path="/login" element={<AuthPage />} /> */}
 		</Routes>
 	)
 }
