@@ -3,6 +3,8 @@ import { useLayoutEffect } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import { userStore } from '../entities/user/store'
 import MessengerPage from '../pages/MessengerPage/MessengerPage'
+import PrivateRouter from '../shared/HOC/PrivateRouter/PrivateRouter'
+import AuthPage from '../pages/AuthPage/AuthPage'
 
 export default function MainRoutes() {
 	const navigate = useNavigate()
@@ -36,10 +38,10 @@ export default function MainRoutes() {
 	}, [])
 	return (
 		<Routes>
-			{/* <Route element={<PrivateRouter />}> */}
-			<Route path="/" element={<MessengerPage />} />
-			{/* </Route>
-			<Route path="/login" element={<AuthPage />} /> */}
+			<Route element={<PrivateRouter />}>
+				<Route path="/" element={<MessengerPage />} />
+			</Route>
+			<Route path="/login" element={<AuthPage />} />
 		</Routes>
 	)
 }
