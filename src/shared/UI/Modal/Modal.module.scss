@@ -3,7 +3,7 @@
 .shadow {
 	width: 100vw;
 	height: 100vh;
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: $primary-black;
 	z-index: 998;
 	display: flex;
 	align-items: center;
@@ -28,7 +28,7 @@
 }
 
 .form {
-	width: fit-content;
+	width: max-content;
 	padding: 20px;
 	height: fit-content;
 	background-color: $primary-white;
@@ -47,4 +47,3 @@
 	display: flex;
 	justify-content: space-between;
 }
-

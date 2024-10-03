@@ -1,13 +1,14 @@
-import { Navigate, Outlet } from 'react-router-dom'
 import { isEmpty } from 'lodash'
-import { IProps } from './type'
 import { toJS } from 'mobx'
+import { Navigate, Outlet } from 'react-router-dom'
 import { userStore } from '../../../entities/user/store'
+import { IProps } from './type'
 
 export default function PrivateRouter({
 	children,
 	redirectPath = '/login'
 }: IProps): JSX.Element {
+	console.log(toJS(userStore.entity))
 	if (isEmpty(toJS(userStore.entity)))
 		return <Navigate to={redirectPath} replace />
 	return children || <Outlet />

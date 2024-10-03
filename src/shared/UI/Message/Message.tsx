@@ -13,6 +13,7 @@ import { MessageProps } from './type'
 
 const Message = observer(({ message }: MessageProps) => {
 	const { entity: user } = userStore
+	console.log('🚀 ~ Message ~ user:', toJS(user))
 
 	if (isEmpty(toJS(user))) return
 

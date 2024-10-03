@@ -4,13 +4,13 @@ import styles from './AuthPage.module.scss'
 
 import { useNavigate } from 'react-router-dom'
 
+import { useGoogleLogin } from '@react-oauth/google'
+import axios from 'axios'
 import isEmpty from 'lodash.isempty'
 import { toJS } from 'mobx'
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import { userStore } from '../../entities/user/store'
-import { useGoogleLogin } from '@react-oauth/google'
 import { UserStatus } from '../../entities/user/types'
-import axios from 'axios'
 
 function AuthPage() {
 	const navigate = useNavigate()
@@ -32,7 +32,7 @@ function AuthPage() {
 				const { data } = res
 				const { name, verified_email } = data
 
-				userStore.set({
+				setUser({
 					...data,
 					nickname: name,
 					confirmed: verified_email,
@@ -50,12 +50,14 @@ function AuthPage() {
 		onError: err => console.error(err, 'err')
 	})
 
-	useEffect(() => {
+	useLayoutEffect(() => {
+		console.log(toJS(userStore.entity))
 		if (!isEmpty(toJS(userStore.entity))) navigate('/')
-	}, [userStore.entity])
+	}, [toJS(userStore.entity)])
 
 	return (
 		<div className={styles.authPage}>
+			1
 			<div className={styles.authForm}>
 				<Typography
 					text="Please authorize"
