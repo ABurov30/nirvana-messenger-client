@@ -15,7 +15,8 @@ export default function MainRoutes() {
 				return
 			}
 			const { set: setUser } = userStore
-
+			console.log('Salam:', event)
+			console.log('Salam2:', event.data)
 			const { user, message } = event.data
 			console.log('🚀 ~ handleMessage ~ event:', event)
 			if (message === 'init') {
