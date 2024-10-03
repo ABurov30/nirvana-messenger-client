@@ -11,9 +11,9 @@ export default function MainRoutes() {
 
 	useLayoutEffect(() => {
 		const handleMessage = event => {
-			if (event.origin !== 'http://localhost:5173') {
-				return
-			}
+			// if (event.origin !== 'http://localhost:5173') {
+			// 	return
+			// }
 			const { set: setUser } = userStore
 			console.log('Salam:', event)
 			console.log('Salam2:', event.data)
