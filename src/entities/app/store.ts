@@ -71,17 +71,65 @@ class AppStore {
 				})
 			}),
 			autorun(() => {
+				this.socket.on('updated chat', async (data: Chat) => {
+					try {
+						const { updateChat } = chatStore
+
+						if (isEmpty(data)) return
+
+						updateChat(data)
+					} catch (e) {
+						console.error(e)
+					}
+				})
+			}),
+			autorun(() => {
 				this.socket.on('deleted chat', async (data: Chat['id']) => {
-					console.log(
-						'🚀 ~ AppStore deleted chat ~ this.socket.on ~ data:',
-						data
-					)
 					try {
 						const { deleteChat } = chatStore
 
 						if (isEmpty(data)) return
 
 						deleteChat(data?.chatId)
+					} catch (e) {
+						console.error(e)
+					}
+				})
+			}),
+			autorun(() => {
+				this.socket.on('deleted message', async (data: Message) => {
+					try {
+						const { deleteMessage } = chatStore
+
+						if (isEmpty(data)) return
+
+						deleteMessage(data)
+					} catch (e) {
+						console.error(e)
+					}
+				})
+			}),
+			autorun(() => {
+				this.socket.on('get message', async (data: Message) => {
+					try {
+						const { getMessage } = chatStore
+
+						if (isEmpty(data)) return
+
+						getMessage(data)
+					} catch (e) {
+						console.error(e)
+					}
+				})
+			}),
+			autorun(() => {
+				this.socket.on('updated message', async (data: Message) => {
+					try {
+						const { updateMessage } = chatStore
+
+						if (isEmpty(data)) return
+
+						updateMessage(data)
 					} catch (e) {
 						console.error(e)
 					}

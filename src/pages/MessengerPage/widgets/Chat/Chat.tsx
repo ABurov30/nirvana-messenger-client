@@ -15,9 +15,6 @@ import { userStore } from '../../../../entities/user/store'
 import { callActionPerProcess } from './handlers/callActionPerProcess'
 
 import Message from '../../../../shared/UI/Message/Message'
-import { useDeletedMessage } from './hooks/useDeletedMessage'
-import { useGetMessage } from './hooks/useGetMessage'
-import { useUpdatedMessage } from './hooks/useUpdatedMessage'
 import { getIconPerProcess } from './utils/getIconPerProcess'
 
 const Chat = observer(() => {
@@ -27,17 +24,12 @@ const Chat = observer(() => {
 		input,
 		setInput,
 		currentMessage,
-		socket,
 		setIsInfoSectionOpen,
 		isInfoSectionOpen
 	} = appStore
 
 	const { entity: user } = userStore
 	const { cancelProcess } = appStore
-
-	useUpdatedMessage(socket)
-	useDeletedMessage(socket)
-	useGetMessage(socket)
 
 	return (
 		<div className={styles.chat}>
