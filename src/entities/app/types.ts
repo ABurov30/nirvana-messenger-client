@@ -17,6 +17,11 @@ export enum MenuMode {
 	search = 'search'
 }
 
+export enum Theme {
+	dark = 'dark',
+	light = 'light'
+}
+
 export interface SearchEntities {
 	messages: Message[]
 	chats: Chat[]
