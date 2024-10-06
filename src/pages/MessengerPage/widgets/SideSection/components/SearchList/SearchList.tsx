@@ -10,6 +10,7 @@ import { Card } from '../../../../../../shared/UI/Card/Card'
 import { onChatSelection } from '../ChatList/handlers/onChatSelection'
 import styles from './SearchList.module.scss'
 
+import { t } from 'i18next'
 import { ContextMenu } from '../../../../../../shared/UI/ContextMenu/ContextMenu'
 import { ButtonsContextMenuConfig } from './config/ButtonContextMenuConfig'
 import { getSearchEntities } from './handlers/getSearchEntities'
@@ -52,7 +53,7 @@ const SearchList = observer(() => {
 			<div className={styles.expandableSection}>
 				{searchEntities.chats?.length ? (
 					<div className={styles.firstRowInExpandableSection}>
-						<Typography text={'Chats'} />
+						<Typography text={t('chats')} />
 						{isExpanded.chats ? (
 							<UpArrowButton
 								onClick={() =>
@@ -92,7 +93,7 @@ const SearchList = observer(() => {
 			<div className={styles.expandableSection}>
 				{searchEntities.messages?.length ? (
 					<div className={styles.firstRowInExpandableSection}>
-						<Typography text={'Messages'} />
+						<Typography text={t('messages')} />
 						{isExpanded.messages ? (
 							<UpArrowButton
 								onClick={() =>
@@ -126,7 +127,7 @@ const SearchList = observer(() => {
 			<div className={styles.expandableSection}>
 				{searchEntities.users?.length ? (
 					<div className={styles.firstRowInExpandableSection}>
-						<Typography text={'Users'} />
+						<Typography text={t('users')} />
 						{isExpanded.users ? (
 							<UpArrowButton
 								onClick={() =>

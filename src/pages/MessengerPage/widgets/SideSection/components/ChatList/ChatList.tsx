@@ -1,3 +1,4 @@
+import { t } from 'i18next'
 import { observer } from 'mobx-react-lite'
 import { Typography } from 'nirvana-uikit'
 import { appStore } from '../../../../../../entities/app/store'
@@ -16,7 +17,11 @@ const ChatList = observer(() => {
 	return (
 		<>
 			<div className={styles.header}>
-				<Typography text={'Chats'} fontSize="1.2em" weight="semibold" />
+				<Typography
+					text={t('chats')}
+					fontSize="1.2em"
+					weight="semibold"
+				/>
 				<AddButton onClick={addChat} />
 			</div>
 			{chatsList?.length ? (
@@ -44,7 +49,7 @@ const ChatList = observer(() => {
 			) : (
 				<div className={styles.emptyList}>
 					<Typography
-						text={'No chats'}
+						text={t('noChats')}
 						fontSize="1.2em"
 						weight="semibold"
 					/>

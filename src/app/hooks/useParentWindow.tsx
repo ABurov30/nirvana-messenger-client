@@ -1,3 +1,5 @@
+//@ts-nocheck
+import i18next from 'i18next'
 import { useLayoutEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { userStore } from '../../entities/user/store'
@@ -9,13 +11,15 @@ export const useParentWindow = () => {
 		const handleMessage = (event: Event) => {
 			const { set: setUser } = userStore
 
-			const { user, message, theme } = event.data
+			const { user, message, theme, language } = event.data
 			const root = document.querySelector('#root')
-			console.log(theme)
+
 			if (message === 'init') {
 				root?.classList?.add(theme)
 				setUser(user)
 				navigate('/')
+
+				i18next.changeLanguage(language)
 			}
 		}
 

@@ -1,0 +1,18 @@
+{
+	"chats": "Chats",
+	"chooseChat": "Choose chat",
+	"contacts": "Contacts",
+	"info": "Information",
+	"name": "Name",
+	"members": "Members",
+	"users": "Users",
+	"delete": "Delete",
+	"edit": "Edit",
+	"add": "Add",
+	"chooseMembers": "Choose members from your contacts",
+	"noChats": "You don`t have chats",
+	"addContact": "Add contact",
+	"noContacts": "You don`t have contacts",
+	"messages": "Messages",
+	"newChat": "New chat"
+}

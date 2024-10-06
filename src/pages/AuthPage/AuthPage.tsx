@@ -9,7 +9,7 @@ import { useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
 import isEmpty from 'lodash.isempty'
 import { toJS } from 'mobx'
-import { useEffect, useLayoutEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { userStore } from '../../entities/user/store'
 import { UserStatus } from '../../entities/user/types'
 
@@ -52,7 +52,6 @@ function AuthPage() {
 	})
 
 	useLayoutEffect(() => {
-		console.log(toJS(userStore.entity))
 		if (!isEmpty(toJS(userStore.entity))) navigate('/')
 	}, [toJS(userStore.entity)])
 

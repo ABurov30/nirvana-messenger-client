@@ -1,3 +1,4 @@
+import { t } from 'i18next'
 import { observer } from 'mobx-react-lite'
 import { Typography } from 'nirvana-uikit'
 import { contactStore } from '../../../../../../entities/contact/store'
@@ -13,7 +14,7 @@ const ContactList = observer(() => {
 		<>
 			<div className={styles.header}>
 				<Typography
-					text={'Contacts'}
+					text={t('contacts')}
 					fontSize="1.2em"
 					weight="semibold"
 				/>
@@ -35,7 +36,7 @@ const ContactList = observer(() => {
 			) : (
 				<div className={styles.emptyList}>
 					<Typography
-						text={'No contacts'}
+						text={t('noContacts')}
 						fontSize="1.2em"
 						weight="semibold"
 					/>

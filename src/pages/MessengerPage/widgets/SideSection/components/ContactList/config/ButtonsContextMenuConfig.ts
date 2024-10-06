@@ -4,6 +4,7 @@ import { deleteContact } from '../../../../../../../entities/contact/actions'
 import { Contact } from '../../../../../../../entities/contact/types'
 import { Button } from '../../../../../../../shared/UI/ContextMenu/types'
 
+import { t } from 'i18next'
 import { appStore } from '../../../../../../../entities/app/store'
 
 export const ButtonsContextMenuConfig = (contact: Contact): Button[] => {
@@ -12,13 +13,13 @@ export const ButtonsContextMenuConfig = (contact: Contact): Button[] => {
 	return [
 		{
 			id: uuidv4(),
-			text: 'Edit',
+			text: t('edit'),
 			handler: (e: Event) => startUpdateContactProcess(contact),
 			conditionToShow: true
 		},
 		{
 			id: uuidv4(),
-			text: 'Delete',
+			text: t('delete'),
 			handler: (e: Event) => deleteContact(contact?.id),
 			conditionToShow: true
 		}

@@ -1,4 +1,5 @@
 //@ts-nocheck
+import { t } from 'i18next'
 import { apolloClient } from '../../shared/apollo/client'
 import { appStore } from '../app/store'
 import { userStore } from '../user/store'
@@ -26,7 +27,8 @@ export const addChat = async () => {
 		mutation: ADD_CHAT,
 		variables: { userId: user?.id }
 	})
-	console.log('🚀 ~ addChat ~ data:', data)
+
+	data.addChat.chat.name = t('newChat')
 	addChat(data.addChat.chat)
 	cancelProcess()
 }

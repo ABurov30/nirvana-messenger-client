@@ -9,7 +9,6 @@ export default function PrivateRouter({
 	children,
 	redirectPath = '/login'
 }: IProps): JSX.Element {
-	console.log(toJS(userStore.entity))
 	if (isEmpty(toJS(userStore.entity)))
 		return <Navigate to={redirectPath} replace />
 	return children || <Outlet />

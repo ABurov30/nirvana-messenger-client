@@ -17,6 +17,7 @@ import { callActionPerProcess } from './handlers/callActionPerProcess'
 
 import Message from '../../../../shared/UI/Message/Message'
 import { getIconPerProcess } from './utils/getIconPerProcess'
+import { t } from 'i18next'
 
 const Chat = observer(() => {
 	const { activeChat } = appStore
@@ -104,7 +105,7 @@ const Chat = observer(() => {
 				</>
 			) : (
 				<Typography
-					text={'No active chat'}
+					text={t('chooseChat')}
 					fontSize="1.2em"
 					weight="semibold"
 				/>

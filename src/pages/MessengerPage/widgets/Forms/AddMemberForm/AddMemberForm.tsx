@@ -1,6 +1,7 @@
 //@ts-nocheck
 import { useQuery } from '@apollo/client'
 import { Spin } from 'antd'
+import { t } from 'i18next'
 import { observer } from 'mobx-react-lite'
 import { Typography } from 'nirvana-uikit'
 import { useEffect, useState } from 'react'
@@ -32,7 +33,7 @@ export const AddMemberForm = observer(() => {
 		<div className={styles.form}>
 			<div className={styles.header}>
 				<Typography
-					text={'Choose members from your contacts'}
+					text={t('chooseMembers')}
 					fontSize="1em"
 					weight="semibold"
 				/>

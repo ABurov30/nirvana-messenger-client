@@ -7,6 +7,7 @@ import { appStore } from '../../../../entities/app/store'
 import { CancelButton } from '../../../../shared/UI/Buttons/CancelButton'
 import { EditButton } from '../../../../shared/UI/Buttons/EditButton'
 
+import { t } from 'i18next'
 import { chatStore } from '../../../../entities/chat/store'
 import { userStore } from '../../../../entities/user/store'
 import { AddButton } from '../../../../shared/UI/Buttons/AddButton'
@@ -33,7 +34,7 @@ const InfoSection = observer(() => {
 							onClick={() => setIsInfoSectionOpen(false)}
 						/>
 						<Typography
-							text={'Info'}
+							text={t('info')}
 							fontSize="1.2em"
 							weight="semibold"
 						/>
@@ -59,7 +60,7 @@ const InfoSection = observer(() => {
 								weight="semibold"
 							/>
 							<Typography
-								text={'Name'}
+								text={t('name')}
 								fontSize="0.8em"
 								weight="regular"
 							/>
@@ -68,7 +69,7 @@ const InfoSection = observer(() => {
 					<div className={styles.membersContainer}>
 						<div className={styles.membersHeader}>
 							<Typography
-								text={'Members'}
+								text={t('members')}
 								fontSize="1em"
 								weight="semibold"
 							/>
